@@ -1,0 +1,22 @@
+{
+  "name": "com.judelco.core.math",
+  "displayName": "JuDelCo Core Math",
+  "description": "Simple linear algebra math library",
+  "version": "0.9.0",
+  "unity": "2018.3",
+  "dependencies": {
+  },
+  "type": "library",
+  "license": "MIT",
+  "keywords": [
+    "core"
+  ],
+  "author": {
+    "name": "JuDelCo",
+    "url": "https://github.com/JuDelCo"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/JuDelCo/CoreMath.git"
+  }
+}
