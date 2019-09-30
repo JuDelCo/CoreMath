@@ -1,7 +1,7 @@
 
 namespace Ju.Math
 {
-	public static class Vector3iSwizzleExtension
+	public static class Vector3iSwizzleExtensions
 	{
 		public static Vector2i xx(this Vector3i v)
 		{
