@@ -218,6 +218,11 @@ namespace Ju.Math
 			return (float)System.Math.Pow(value, power);
 		}
 
+		public static int Repeat(int value, int length)
+		{
+			return ((value % length) + length) % length;
+		}
+
 		public static float Repeat(float value, float length)
 		{
 			return value - Math.Floor(value / length) * length;
