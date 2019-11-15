@@ -16,12 +16,6 @@ See also
 - [Core Unity](https://github.com/JuDelCo/CoreUnity) - Core services extension for Unity3D
 
 
-Documentation
-=====================
-
-Work in progress...
-
-
 Install
 =====================
 
@@ -34,6 +28,12 @@ If you are using Unity, update the dependencies in the ```/Packages/manifest.jso
 ```
 
 otherwise, use this package as it is in native C# applications, as it doesn't have dependencies with Unity.
+
+
+Contents
+=====================
+
+Work in progress...
 
 
 The MIT License (MIT)
