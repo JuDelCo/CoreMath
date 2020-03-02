@@ -112,6 +112,25 @@ namespace Ju.Math
 			return eta * incident - (eta * dNI + Math.Sqrt(k)) * normal;
 		}
 
+		public static float Angle(Vector3f a, Vector3f b)
+		{
+			if (Math.Sqrt(a.lengthSqr * b.lengthSqr) < Math.Epsilon)
+			{
+				return 0f;
+			}
+
+			return Math.Acos(Math.Clamp(Vector3f.Dot(Vector3f.Normalize(a), Vector3f.Normalize(b)), -1f, 1f));
+		}
+
+		public static float SignedAngle(Vector3f from, Vector3f to, Vector3f axis)
+		{
+			var angle = Vector3f.Angle(from, to);
+			var cross = Vector3f.Cross(from, to);
+			var sign = Math.Sign(axis.x * cross.x + axis.y * cross.y + axis.z * cross.z);
+
+			return angle * sign;
+		}
+
 		public static Vector3i Round(Vector3f v)
 		{
 			return new Vector3i(Math.Round(v.x), Math.Round(v.y), Math.Round(v.z));

@@ -5,7 +5,7 @@ namespace Ju.Math
 	{
 		public const float Pi = (float)System.Math.PI;
 		public const float Tau = (float)(System.Math.PI * 2f);
-		public const float Epsilon = 0.00001f;
+		public const float Epsilon = 0.000001f;
 		public const float Deg2Rad = 0.0174532925199432957692369076848861271344287188854172f;
 		public const float Rad2Deg = 57.295779513082320876798154814105170332405472466564321f;
 
@@ -261,6 +261,14 @@ namespace Ju.Math
 		public static float Tan(float value)
 		{
 			return (float)System.Math.Tan(value);
+		}
+
+		public static float TriangleAngle(float length, float a, float b)
+		{
+			// Angle needed between a and b so that their extremities are spaced with a specific length.
+			// https://en.wikipedia.org/wiki/Law_of_cosines
+
+			return Math.Acos(Math.Clamp((a * a + b * b - length * length) / (2f * a * b), -1f, 1f));
 		}
 	}
 }

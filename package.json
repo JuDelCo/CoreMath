@@ -1,8 +1,8 @@
 {
   "name": "com.judelco.core.math",
   "displayName": "JuDelCo Core Math",
-  "description": "Simple linear algebra math library",
-  "version": "0.10.0",
+  "description": "Linear algebra math library and utils",
+  "version": "1.0.0",
   "unity": "2018.3",
   "dependencies": {
   },

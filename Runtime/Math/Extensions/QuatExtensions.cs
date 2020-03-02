@@ -271,6 +271,24 @@ namespace Ju.Math
 		{
 			return q * new Quat(radians, v);
 		}
+
+		public static Vector3f AngularVelocity(Quat previous, Quat rotation, float deltaTime)
+		{
+			// https://www.gamedev.net/forums/topic/347752-quaternion-and-angular-velocity/
+
+			var q = rotation * Quat.Inverse(previous);
+
+			float length = Math.Sqrt(q.x * q.x + q.y * q.y + q.z * q.z);
+
+			if (length <= Math.Epsilon)
+			{
+				return new Vector3f(2f * q.x, 2f * q.y, 2f * q.z);
+			}
+
+			float angle = 2f * Math.Atan2(length, q.w);
+
+			return (new Vector3f(q.x, q.y, q.z)) * (angle / (length * deltaTime));
+		}
 	}
 
 	public static class QuatExtension

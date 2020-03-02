@@ -1,7 +1,7 @@
 Core Math
 =====================
 
-Core Math is a simple linear algebra math library.
+Core Math is a linear algebra math library. It also contains 2D, 3D physics and Inverse Kinematics methods.
 
 This package will follow a [semantic versioning](http://semver.org/).
 
@@ -11,9 +11,8 @@ Any feedback is welcome !
 See also
 =====================
 
-- [Core](https://github.com/JuDelCo/Core) - Core package base
+- [Core](https://github.com/JuDelCo/Core) - Core package base (service locator and core services)
 - [Core ECS](https://github.com/JuDelCo/CoreECS) - Deterministic lightweight ECS framework
-- [Core Unity](https://github.com/JuDelCo/CoreUnity) - Core services extension for Unity3D
 
 
 Install
@@ -22,24 +21,51 @@ Install
 If you are using Unity, update the dependencies in the ```/Packages/manifest.json``` file in your project folder with:
 
 ```
-	"com.judelco.core": "https://github.com/JuDelCo/Core.git",
 	"com.judelco.core.math": "https://github.com/JuDelCo/CoreMath.git",
-	"com.judelco.core.unity": "https://github.com/JuDelCo/CoreUnity.git",
 ```
 
-otherwise, use this package as it is in native C# applications, as it doesn't have dependencies with Unity.
+otherwise, use this package as it is in native C# applications, it will work just fine.
 
 
 Contents
 =====================
 
-Work in progress...
+#### Classes (Math)
+
+- ```Math```
+- ```Bezier```
+- ```Frustum```
+- ```Matrix3```
+- ```Matrix4```
+- ```Quat```
+- ```Vector2f```
+- ```Vector2i```
+- ```Vector3f```
+- ```Vector3i```
+- ```Vector4f```
+- ```Vector4i```
+
+#### Classes (Physics)
+
+- ```Physics2D```
+- ```Physics3D```
+- ```Box```
+- ```FloatRect```
+- ```IntRect```
+- ```Plane```
+- ```Ray```
+- ```Sphere```
+
+#### Classes (Inverse Kinematics)
+
+- ```TwoBoneIK```
+- ```ThreeBoneIK```
 
 
 The MIT License (MIT)
 =====================
 
-Copyright © 2017-2019 Juan Delgado (JuDelCo)
+Copyright © 2017-2020 Juan Delgado (JuDelCo)
 
 Permission is hereby granted, free of charge, to any person obtaining a copy
 of this software and associated documentation files (the "Software"), to deal
