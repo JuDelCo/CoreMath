@@ -37,7 +37,7 @@ Contents
 - ```Frustum```
 - ```Matrix3```
 - ```Matrix4```
-- ```Quat```
+- ```Quat (Quaternion)```
 - ```Vector2f```
 - ```Vector2i```
 - ```Vector3f```

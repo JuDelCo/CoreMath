@@ -9,6 +9,11 @@ namespace Ju.Math
 		{
 			return new UnityEngine.Vector2(v.x, v.y);
 		}
+
+		public static explicit operator Vector2i(UnityEngine.Vector2 v)
+		{
+			return new Vector2i(Math.Round(v.x), Math.Round(v.y));
+		}
 	}
 }
 
