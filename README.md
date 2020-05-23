@@ -3,8 +3,6 @@ Core Math
 
 Core Math is a linear algebra math library. It also contains 2D, 3D physics and Inverse Kinematics methods.
 
-This package will follow a [semantic versioning](http://semver.org/).
-
 Any feedback is welcome !
 
 
@@ -21,7 +19,7 @@ Install
 If you are using Unity, update the dependencies in the ```/Packages/manifest.json``` file in your project folder with:
 
 ```
-	"com.judelco.core.math": "https://github.com/JuDelCo/CoreMath.git",
+	"com.judelco.core.math": "https://github.com/JuDelCo/CoreMath.git#v1.1.0",
 ```
 
 otherwise, use this package as it is in native C# applications, it will work just fine.
