@@ -1,7 +1,7 @@
-Core Math
+JuCore Math
 =====================
 
-Core Math is a linear algebra math library. It also contains 2D, 3D physics and Inverse Kinematics methods.
+JuCore Math is a linear algebra math library. It also contains 2D, 3D physics and Inverse Kinematics methods.
 
 Any feedback is welcome !
 
@@ -9,8 +9,8 @@ Any feedback is welcome !
 See also
 =====================
 
-- [Core](https://github.com/JuDelCo/Core) - Core package base (service locator and core services)
-- [Core ECS](https://github.com/JuDelCo/CoreECS) - Deterministic lightweight ECS framework
+- [JuCore](https://github.com/JuDelCo/Core) - Core package base (service locator and core services)
+- [JuCore ECS](https://github.com/JuDelCo/CoreECS) - Deterministic lightweight ECS framework
 
 
 Install
@@ -19,7 +19,7 @@ Install
 If you are using Unity, update the dependencies in the ```/Packages/manifest.json``` file in your project folder with:
 
 ```
-	"com.judelco.core.math": "https://github.com/JuDelCo/CoreMath.git#v1.1.0",
+	"com.judelco.core.math": "https://github.com/JuDelCo/CoreMath.git#v1.1.1",
 ```
 
 otherwise, use this package as it is in native C# applications, it will work just fine.
