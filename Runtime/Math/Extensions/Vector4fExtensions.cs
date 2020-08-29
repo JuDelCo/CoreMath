@@ -3,14 +3,14 @@ namespace Ju.Math
 {
 	public partial struct Vector4f
 	{
-		public static Vector4f zero    = new Vector4f( 0f,  0f,  0f,  1f);
-		public static Vector4f one     = new Vector4f( 1f,  1f,  1f,  1f);
-		public static Vector4f right   = new Vector4f( 1f,  0f,  0f,  1f);
-		public static Vector4f left    = new Vector4f(-1f,  0f,  0f,  1f);
-		public static Vector4f up      = new Vector4f( 0f,  1f,  0f,  1f);
-		public static Vector4f down    = new Vector4f( 0f, -1f,  0f,  1f);
-		public static Vector4f forward = new Vector4f( 0f,  0f,  1f,  1f);
-		public static Vector4f back    = new Vector4f( 0f,  0f, -1f,  1f);
+		public static Vector4f zero = new Vector4f(0f, 0f, 0f, 1f);
+		public static Vector4f one = new Vector4f(1f, 1f, 1f, 1f);
+		public static Vector4f right = new Vector4f(1f, 0f, 0f, 1f);
+		public static Vector4f left = new Vector4f(-1f, 0f, 0f, 1f);
+		public static Vector4f up = new Vector4f(0f, 1f, 0f, 1f);
+		public static Vector4f down = new Vector4f(0f, -1f, 0f, 1f);
+		public static Vector4f forward = new Vector4f(0f, 0f, 1f, 1f);
+		public static Vector4f back = new Vector4f(0f, 0f, -1f, 1f);
 
 		public Vector4f(Vector3f v) : this(v, 1f)
 		{
@@ -29,6 +29,8 @@ namespace Ju.Math
 			return new Vector3f(vector.x, vector.y, vector.z);
 		}
 
+#pragma warning disable IDE1006
+
 		public float length
 		{
 			get { return Math.Sqrt((x * x + y * y) + (z * z + w * w)); }
@@ -38,6 +40,8 @@ namespace Ju.Math
 		{
 			get { return ((x * x + y * y) + (z * z + w * w)); }
 		}
+
+#pragma warning restore IDE1006
 
 		public static Vector4i Ceil(Vector4f v)
 		{

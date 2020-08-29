@@ -12,11 +12,15 @@ namespace Ju.Math
 			this.direction = Math.Normalize(direction);
 		}
 
+#pragma warning disable IDE1006
+
 		public Vector3f origin
 		{
 			get { return position; }
 			set { position = value; }
 		}
+
+#pragma warning restore IDE1006
 
 		public Vector3f GetPoint(float distance)
 		{
@@ -36,7 +40,7 @@ namespace Ju.Math
 
 		public override bool Equals(object obj)
 		{
-			return (obj is Ray && (this == (Ray)obj));
+			return (obj is Ray ray && (this == ray));
 		}
 
 		public static bool operator ==(Ray a, Ray b)

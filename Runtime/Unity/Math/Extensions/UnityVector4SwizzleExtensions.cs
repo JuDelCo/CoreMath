@@ -9,6 +9,8 @@ namespace Ju.Math
 {
 	public static class UnityVector4SwizzleExtensions
 	{
+#pragma warning disable IDE1006
+
 		public static Vector2 xx(this Vector4 v)
 		{
 			return new Vector2(v.x, v.x);
@@ -1688,6 +1690,8 @@ namespace Ju.Math
 		{
 			return new Vector4(v.w, v.w, v.w, v.w);
 		}
+
+#pragma warning restore IDE1006
 	}
 }
 

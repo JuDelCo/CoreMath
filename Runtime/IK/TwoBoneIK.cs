@@ -19,7 +19,7 @@ namespace Ju.Math
 			float midAngleDiff = (currentMidAngle - desiredMidAngle);
 			Vector3f midAxis = Vector3f.Normalize(Vector3f.Cross(top - mid, mid - low));
 			Quat finalMidRotation = new Quat(midAngleDiff, Quat.Inverse(midRotation) * midAxis);
-			midLocalRotation = midLocalRotation * finalMidRotation;
+			midLocalRotation *= finalMidRotation;
 
 			// Rotate low in global space.
 			Vector3f rotatedLow = (new Quat(midAngleDiff, midAxis) * (low - mid)) + mid;
@@ -28,7 +28,7 @@ namespace Ju.Math
 			float topAngleDiff = Vector3f.Angle(rotatedLow - top, target - top);
 			Vector3f topAxis = Vector3f.Normalize(Vector3f.Cross(rotatedLow - top, target - top));
 			Quat finalTopRotation = new Quat(topAngleDiff, Quat.Inverse(topRotation) * topAxis);
-			topLocalRotation = topLocalRotation * finalTopRotation;
+			topLocalRotation *= finalTopRotation;
 
 			// Rotate mid and low (again) in global space.
 			Vector3f rotatedMid = (new Quat(topAngleDiff, topAxis) * (mid - top)) + top;

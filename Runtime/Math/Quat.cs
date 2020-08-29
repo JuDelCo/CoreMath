@@ -114,7 +114,7 @@ namespace Ju.Math
 
 		public override bool Equals(object obj)
 		{
-			return (obj is Quat && (this == (Quat)obj));
+			return (obj is Quat quat && (this == quat));
 		}
 
 		public static bool operator ==(Quat a, Quat b)

@@ -3,14 +3,14 @@ namespace Ju.Math
 {
 	public partial struct Vector3i
 	{
-		public static Vector3i zero    = new Vector3i( 0,  0,  0);
-		public static Vector3i one     = new Vector3i( 1,  1,  1);
-		public static Vector3i right   = new Vector3i( 1,  0,  0);
-		public static Vector3i left    = new Vector3i(-1,  0,  0);
-		public static Vector3i up      = new Vector3i( 0,  1,  0);
-		public static Vector3i down    = new Vector3i( 0, -1,  0);
-		public static Vector3i forward = new Vector3i( 0,  0,  1);
-		public static Vector3i back    = new Vector3i( 0,  0, -1);
+		public static Vector3i zero = new Vector3i(0, 0, 0);
+		public static Vector3i one = new Vector3i(1, 1, 1);
+		public static Vector3i right = new Vector3i(1, 0, 0);
+		public static Vector3i left = new Vector3i(-1, 0, 0);
+		public static Vector3i up = new Vector3i(0, 1, 0);
+		public static Vector3i down = new Vector3i(0, -1, 0);
+		public static Vector3i forward = new Vector3i(0, 0, 1);
+		public static Vector3i back = new Vector3i(0, 0, -1);
 
 		public Vector3i(Vector2i v) : this(v, 0)
 		{
@@ -38,6 +38,8 @@ namespace Ju.Math
 			return new Vector3f(vector.x, vector.y, vector.z);
 		}
 
+#pragma warning disable IDE1006
+
 		public float length
 		{
 			get { return Math.Sqrt((x * x + y * y) + z * z); }
@@ -47,6 +49,8 @@ namespace Ju.Math
 		{
 			get { return ((x * x + y * y) + z * z); }
 		}
+
+#pragma warning restore IDE1006
 
 		public static Vector3i Cross(Vector3i a, Vector3i b)
 		{

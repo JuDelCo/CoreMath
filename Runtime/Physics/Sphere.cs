@@ -25,7 +25,7 @@ namespace Ju.Math
 
 		public override bool Equals(object obj)
 		{
-			return (obj is Sphere && (this == (Sphere)obj));
+			return (obj is Sphere sphere && (this == sphere));
 		}
 
 		public static bool operator ==(Sphere a, Sphere b)

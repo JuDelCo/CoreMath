@@ -107,6 +107,12 @@ namespace Ju.Math
 			return a * (1f - alpha) + b * alpha;
 		}
 
+		public static float LerpInverse(float a, float b, float value, bool extrapolate = false)
+		{
+			value = extrapolate ? value : Math.Clamp(value, a, b);
+			return (value - a) / (b - a);
+		}
+
 		public static float Log(float value)
 		{
 			return (float)System.Math.Log(value);
@@ -218,7 +224,13 @@ namespace Ju.Math
 			return (float)System.Math.Pow(value, power);
 		}
 
-		public static int Repeat(int value, int length)
+		public static float Remap(float oldMin, float oldMax, float newMin, float newMax, float value)
+		{
+			var alpha = LerpInverse(oldMin, oldMax, value);
+			return Lerp(newMin, newMax, alpha);
+		}
+
+		public static int Repeat(int value, int length)
 		{
 			return ((value % length) + length) % length;
 		}

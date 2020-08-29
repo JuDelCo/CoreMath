@@ -44,7 +44,7 @@ namespace Ju.Math
 
 		public override bool Equals(object obj)
 		{
-			return (obj is Plane && (this == (Plane)obj));
+			return (obj is Plane plane && (this == plane));
 		}
 
 		public static bool operator ==(Plane a, Plane b)

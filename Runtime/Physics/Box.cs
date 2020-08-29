@@ -12,6 +12,8 @@ namespace Ju.Math
 			this.boxSize = size;
 		}
 
+#pragma warning disable IDE1006
+
 		public Vector3f center
 		{
 			get { return centerPosition; }
@@ -40,6 +42,8 @@ namespace Ju.Math
 			get { return (centerPosition + extents); }
 		}
 
+#pragma warning restore IDE1006
+
 		public override int GetHashCode()
 		{
 			unchecked
@@ -53,7 +57,7 @@ namespace Ju.Math
 
 		public override bool Equals(object obj)
 		{
-			return (obj is Box && (this == (Box)obj));
+			return (obj is Box box && (this == box));
 		}
 
 		public static bool operator ==(Box a, Box b)

@@ -3,17 +3,19 @@ namespace Ju.Math
 {
 	public partial struct Vector2f
 	{
-		public static Vector2f zero  = new Vector2f( 0f,  0f);
-		public static Vector2f one   = new Vector2f( 1f,  1f);
-		public static Vector2f right = new Vector2f( 1f,  0f);
-		public static Vector2f left  = new Vector2f(-1f,  0f);
-		public static Vector2f up    = new Vector2f( 0f,  1f);
-		public static Vector2f down  = new Vector2f( 0f, -1f);
+		public static Vector2f zero = new Vector2f(0f, 0f);
+		public static Vector2f one = new Vector2f(1f, 1f);
+		public static Vector2f right = new Vector2f(1f, 0f);
+		public static Vector2f left = new Vector2f(-1f, 0f);
+		public static Vector2f up = new Vector2f(0f, 1f);
+		public static Vector2f down = new Vector2f(0f, -1f);
 
 		public static implicit operator Vector3f(Vector2f vector)
 		{
 			return new Vector3f(vector);
 		}
+
+#pragma warning disable IDE1006
 
 		public float angle
 		{
@@ -29,6 +31,8 @@ namespace Ju.Math
 		{
 			get { return (x * x + y * y); }
 		}
+
+#pragma warning restore IDE1006
 
 		public static Vector2i Ceil(Vector2f v)
 		{

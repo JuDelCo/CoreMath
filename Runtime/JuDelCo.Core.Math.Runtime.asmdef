@@ -1,5 +1,5 @@
 {
-    "name": "JuDelCo.Math.Runtime",
+    "name": "JuDelCo.Core.Math.Runtime",
     "references": [],
     "includePlatforms": [],
     "excludePlatforms": [],
@@ -8,5 +8,6 @@
     "precompiledReferences": [],
     "autoReferenced": true,
     "defineConstraints": [],
-    "versionDefines": []
+    "versionDefines": [],
+    "noEngineReferences": false
 }

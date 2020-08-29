@@ -3,7 +3,7 @@ namespace Ju.Math
 {
 	public partial struct Matrix4
 	{
-		public static Matrix4 zero     = new Matrix4(0f, 0f, 0f, 0f, 0f, 0f, 0f, 0f, 0f, 0f, 0f, 0f, 0f, 0f, 0f, 0f);
+		public static Matrix4 zero = new Matrix4(0f, 0f, 0f, 0f, 0f, 0f, 0f, 0f, 0f, 0f, 0f, 0f, 0f, 0f, 0f, 0f);
 		public static Matrix4 identity = new Matrix4(1f, 0f, 0f, 0f, 0f, 1f, 0f, 0f, 0f, 0f, 1f, 0f, 0f, 0f, 0f, 1f);
 
 		public static explicit operator Matrix4(Matrix3 m)
@@ -15,6 +15,8 @@ namespace Ju.Math
 		{
 			return q.ToMatrix4();
 		}
+
+#pragma warning disable IDE1006
 
 		public Vector4f column0
 		{
@@ -55,6 +57,8 @@ namespace Ju.Math
 		{
 			get { return new Vector4f(m03, m13, m23, m33); }
 		}
+
+#pragma warning restore IDE1006
 
 		public static Matrix4 Adjugate(Matrix4 m)
 		{

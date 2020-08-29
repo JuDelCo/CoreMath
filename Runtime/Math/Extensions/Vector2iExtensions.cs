@@ -3,12 +3,12 @@ namespace Ju.Math
 {
 	public partial struct Vector2i
 	{
-		public static Vector2i zero  = new Vector2i( 0,  0);
-		public static Vector2i one   = new Vector2i( 1,  1);
-		public static Vector2i right = new Vector2i( 1,  0);
-		public static Vector2i left  = new Vector2i(-1,  0);
-		public static Vector2i up    = new Vector2i( 0,  1);
-		public static Vector2i down  = new Vector2i( 0, -1);
+		public static Vector2i zero = new Vector2i(0, 0);
+		public static Vector2i one = new Vector2i(1, 1);
+		public static Vector2i right = new Vector2i(1, 0);
+		public static Vector2i left = new Vector2i(-1, 0);
+		public static Vector2i up = new Vector2i(0, 1);
+		public static Vector2i down = new Vector2i(0, -1);
 
 		public static implicit operator Vector3i(Vector2i vector)
 		{
@@ -19,6 +19,8 @@ namespace Ju.Math
 		{
 			return new Vector2f(vector.x, vector.y);
 		}
+
+#pragma warning disable IDE1006
 
 		public float angle
 		{
@@ -34,6 +36,8 @@ namespace Ju.Math
 		{
 			get { return (x * x + y * y); }
 		}
+
+#pragma warning restore IDE1006
 
 		public static float Cross(Vector2i a, Vector2i b)
 		{

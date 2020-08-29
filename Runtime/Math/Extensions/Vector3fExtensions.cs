@@ -3,14 +3,14 @@ namespace Ju.Math
 {
 	public partial struct Vector3f
 	{
-		public static Vector3f zero    = new Vector3f( 0f,  0f,  0f);
-		public static Vector3f one     = new Vector3f( 1f,  1f,  1f);
-		public static Vector3f right   = new Vector3f( 1f,  0f,  0f);
-		public static Vector3f left    = new Vector3f(-1f,  0f,  0f);
-		public static Vector3f up      = new Vector3f( 0f,  1f,  0f);
-		public static Vector3f down    = new Vector3f( 0f, -1f,  0f);
-		public static Vector3f forward = new Vector3f( 0f,  0f,  1f);
-		public static Vector3f back    = new Vector3f( 0f,  0f, -1f);
+		public static Vector3f zero = new Vector3f(0f, 0f, 0f);
+		public static Vector3f one = new Vector3f(1f, 1f, 1f);
+		public static Vector3f right = new Vector3f(1f, 0f, 0f);
+		public static Vector3f left = new Vector3f(-1f, 0f, 0f);
+		public static Vector3f up = new Vector3f(0f, 1f, 0f);
+		public static Vector3f down = new Vector3f(0f, -1f, 0f);
+		public static Vector3f forward = new Vector3f(0f, 0f, 1f);
+		public static Vector3f back = new Vector3f(0f, 0f, -1f);
 
 		public Vector3f(Vector2f v) : this(v, 0f)
 		{
@@ -33,6 +33,8 @@ namespace Ju.Math
 			return new Vector2f(vector.x, vector.y);
 		}
 
+#pragma warning disable IDE1006
+
 		public float length
 		{
 			get { return Math.Sqrt((x * x + y * y) + z * z); }
@@ -42,6 +44,8 @@ namespace Ju.Math
 		{
 			get { return ((x * x + y * y) + z * z); }
 		}
+
+#pragma warning restore IDE1006
 
 		public static Vector3i Ceil(Vector3f v)
 		{

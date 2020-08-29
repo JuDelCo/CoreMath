@@ -114,6 +114,8 @@ namespace Ju.Math
 		{
 		}
 
+#pragma warning disable IDE1006
+
 		public float length
 		{
 			get { return Math.Sqrt((x * x + y * y) + (z * z + w * w)); }
@@ -160,6 +162,8 @@ namespace Ju.Math
 		{
 			get { return new Vector3f(pitch, yaw, roll); }
 		}
+
+#pragma warning restore IDE1006
 
 		public static Quat Conjugate(Quat q)
 		{

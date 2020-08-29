@@ -170,7 +170,7 @@ namespace Ju.Math
 
 		public override bool Equals(object obj)
 		{
-			return (obj is Vector2f && (this == (Vector2f)obj));
+			return (obj is Vector2f vector && (this == vector));
 		}
 
 		public static bool operator ==(Vector2f a, Vector2f b)

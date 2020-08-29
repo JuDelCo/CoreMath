@@ -24,6 +24,8 @@ namespace Ju.Math
 			height = size.y;
 		}
 
+#pragma warning disable IDE1006
+
 		public Vector2i position
 		{
 			get { return new Vector2i(x, y); }
@@ -99,6 +101,8 @@ namespace Ju.Math
 			get { return new Vector2i(x + halfWidth, y + halfHeight); }
 		}
 
+#pragma warning restore IDE1006
+
 		public override int GetHashCode()
 		{
 			unchecked
@@ -114,7 +118,7 @@ namespace Ju.Math
 
 		public override bool Equals(object obj)
 		{
-			return (obj is IntRect && (this == (IntRect)obj));
+			return (obj is IntRect rect && (this == rect));
 		}
 
 		public static bool operator ==(IntRect a, IntRect b)

@@ -24,7 +24,7 @@ namespace Ju.Math
 			float topMidAngleDiff = (currentTopMidAngle - desiredTopMidAngle);
 			Vector3f topMidAxis = Vector3f.Normalize(Vector3f.Cross(top - topMid, topMid - lowMid));
 			Quat finalTopMidRotation = new Quat(topMidAngleDiff, Quat.Inverse(topMidRotation) * topMidAxis);
-			topMidLocalRotation = topMidLocalRotation * finalTopMidRotation;
+			topMidLocalRotation *= finalTopMidRotation;
 
 			// Rotate lowMid in global space.
 			Vector3f rotatedLowMid = (new Quat(topMidAngleDiff, topMidAxis) * (lowMid - topMid)) + topMid;
@@ -33,7 +33,7 @@ namespace Ju.Math
 			float topAngleDiff = Vector3f.Angle(rotatedLowMid - top, targetTwoBoneIK - top);
 			Vector3f topAxis = Vector3f.Normalize(Vector3f.Cross(rotatedLowMid - top, targetTwoBoneIK - top));
 			Quat finalTopRotation = new Quat(topAngleDiff, Quat.Inverse(topRotation) * topAxis);
-			topLocalRotation = topLocalRotation * finalTopRotation;
+			topLocalRotation *= finalTopRotation;
 
 			// Rotate topMid and lowMid (again) in global space.
 			Vector3f rotatedTopMid = (new Quat(topAngleDiff, topAxis) * (topMid - top)) + top;
@@ -50,7 +50,7 @@ namespace Ju.Math
 			topLocalRotation = finalAdjustTopRotation * topLocalRotation;
 
 			// Rotate (again) the global space positions (and lowMid rotation).
-			Vector3f lastRotatedTopMid = (new Quat(angleDiff, planeNormal) * (rotatedTopMid - top)) + top;
+			//Vector3f lastRotatedTopMid = (new Quat(angleDiff, planeNormal) * (rotatedTopMid - top)) + top;
 			Vector3f lastRotatedLow = (new Quat(angleDiff, planeNormal) * new Quat(topAngleDiff, topAxis) * new Quat(topMidAngleDiff, topMidAxis) * (low - lowMid)) + lastRotatedLowMid;
 			Quat rotatedLowMidRotation = new Quat(angleDiff, planeNormal) * new Quat(topAngleDiff, topAxis) * new Quat(topMidAngleDiff, topMidAxis) * lowMidRotation;
 
@@ -58,7 +58,7 @@ namespace Ju.Math
 			float midLowAngleDiff = Vector3f.Angle(lastRotatedLow - lastRotatedLowMid, target - lastRotatedLowMid);
 			Vector3f midLowAxis = Vector3f.Normalize(Vector3f.Cross(lastRotatedLow - lastRotatedLowMid, target - lastRotatedLowMid));
 			Quat finalMidLowRotation = new Quat(midLowAngleDiff, Quat.Inverse(rotatedLowMidRotation) * midLowAxis);
-			lowMidLocalRotation = lowMidLocalRotation * finalMidLowRotation;
+			lowMidLocalRotation *= finalMidLowRotation;
 		}
 	}
 }

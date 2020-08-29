@@ -133,7 +133,7 @@ namespace Ju.Math
 
 		public override bool Equals(object obj)
 		{
-			return (obj is Vector3i && (this == (Vector3i)obj));
+			return (obj is Vector3i vector && (this == vector));
 		}
 
 		public static bool operator ==(Vector3i a, Vector3i b)

@@ -154,7 +154,7 @@ namespace Ju.Math
 
 		public override bool Equals(object obj)
 		{
-			return (obj is Matrix3 && (this == (Matrix3)obj));
+			return (obj is Matrix3 matrix && (this == matrix));
 		}
 
 		public static bool operator ==(Matrix3 a, Matrix3 b)
