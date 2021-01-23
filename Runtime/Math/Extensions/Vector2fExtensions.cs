@@ -17,6 +17,7 @@ namespace Ju.Math
 
 #pragma warning disable IDE1006
 
+		// Angle in radians
 		public float angle
 		{
 			get { return Math.Atan2(y, x); }
@@ -30,6 +31,11 @@ namespace Ju.Math
 		public float lengthSqr
 		{
 			get { return (x * x + y * y); }
+		}
+
+		public Vector2f normalized
+		{
+			get { return Normalize(this); }
 		}
 
 #pragma warning restore IDE1006
@@ -66,17 +72,19 @@ namespace Ju.Math
 
 		public static Vector2f Mix(Vector2f a, Vector2f b, float alpha)
 		{
-			if (alpha > 1f)
-			{
-				alpha = 1f;
-			}
-
-			return a * (1f - alpha) + b * alpha;
+			return Lerp(a, b, alpha);
 		}
 
 		public static Vector2f Normalize(Vector2f v)
 		{
-			return v / v.length;
+			var length = v.length;
+
+			if (length > Math.Epsilon)
+			{
+				return v / length;
+			}
+
+			return Vector2f.zero;
 		}
 
 		public static Vector2f Lerp(Vector2f a, Vector2f b, float alpha, bool extrapolate = false)
@@ -108,31 +116,41 @@ namespace Ju.Math
 			return new Vector2i(Math.Round(v.x), Math.Round(v.y));
 		}
 
+		// Rotate 2D vector by the provided radians.
 		public static Vector2f Rotate(Vector2f v, float radians)
 		{
 			return Vector2f.AngleToVector(v.angle + radians) * v.length;
 		}
 
+		// Normalized angle 2D vector contained in a circle using the provided radians.
 		public static Vector2f AngleToVector(float radians)
 		{
 			return new Vector2f(Math.Cos(radians), Math.Sin(radians));
 		}
 
+		// Angle formed by two 2D vectors.
 		public static float Angle(Vector2f a, Vector2f b)
 		{
 			return Math.Acos(Math.Clamp(Vector2f.Dot(Normalize(a), Normalize(b)), -1f, 1f));
 		}
 
-		public static Vector2f Perpendicular(Vector2f a, Vector2f b)
+		// Perpendicular 2D normal to a line formed by two 2D points.
+		public static Vector2f PerpendicularToLine(Vector2f a, Vector2f b)
 		{
 			return new Vector2f(-1f * (b.y - a.y), b.x - a.x);
 		}
 
-		public static Vector2f Perpendicular(Vector2f v)
+		public static Vector2f PerpendicularCW(Vector2f v)
+		{
+			return new Vector2f(v.y, -v.x);
+		}
+
+		public static Vector2f PerpendicularCCW(Vector2f v)
 		{
 			return new Vector2f(-v.y, v.x);
 		}
 
+		// 2D point contained in a circle of the provided radius at the provided radians.
 		public static Vector2f PointOnCircle(Vector2f center, float radius, float radians)
 		{
 			return new Vector2f(

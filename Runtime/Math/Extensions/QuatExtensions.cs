@@ -121,6 +121,11 @@ namespace Ju.Math
 			get { return Math.Sqrt((x * x + y * y) + (z * z + w * w)); }
 		}
 
+		public Quat normalized
+		{
+			get { return Normalize(this); }
+		}
+
 		public float angle
 		{
 			get { return Math.Acos(w) * 2f; }
@@ -196,7 +201,7 @@ namespace Ju.Math
 		{
 			var cosTheta = Dot(a, b);
 
-			if (cosTheta > 1f - float.Epsilon)
+			if (cosTheta > 1f - Math.Epsilon)
 			{
 				return Lerp(a, b, alpha);
 			}
@@ -210,15 +215,35 @@ namespace Ju.Math
 
 		public static Quat Normalize(Quat q)
 		{
-			return q / q.length;
+			var length = q.length;
+
+			if (length > Math.Epsilon)
+			{
+				return q / length;
+			}
+
+			return Quat.identity;
 		}
 
-		public static Quat Lerp(Quat a, Quat b, float alpha)
+		public static Quat Lerp(Quat a, Quat b, float alpha, bool extrapolate = false)
 		{
+			alpha = extrapolate ? alpha : Math.Clamp01(alpha);
 			return new Quat(a.x * (1 - alpha) + b.x * alpha, a.y * (1 - alpha) + b.y * alpha, a.z * (1 - alpha) + b.z * alpha, a.w * (1 - alpha) + b.w * alpha);
 		}
 
-		public static Quat SLerp(Quat a, Quat b, float alpha)
+		// Rotation using the provided forward and up directions.
+		public static Quat LookRotation(Vector3f forward, Vector3f up)
+		{
+			forward = Vector3f.Normalize(forward);
+			var right = Vector3f.Normalize(Vector3f.Cross(up, forward));
+			up = Vector3f.Cross(forward, right);
+
+			var matrix = new Matrix3(right.x, right.y, right.z, up.x, up.y, up.z, forward.x, forward.y, forward.z);
+
+			return new Quat(matrix);
+		}
+
+		public static Quat SLerp(Quat a, Quat b, float alpha, bool extrapolate = false)
 		{
 			var z = b;
 			var cosTheta = Dot(a, b);
@@ -229,21 +254,46 @@ namespace Ju.Math
 				cosTheta = -cosTheta;
 			}
 
-			if (cosTheta > 1f - float.Epsilon)
+			if (cosTheta > 1f - Math.Epsilon)
 			{
-				return Lerp(a, z, alpha);
+				return Lerp(a, z, alpha, extrapolate);
 			}
 			else
 			{
+				alpha = extrapolate ? alpha : Math.Clamp01(alpha);
 				var angle = Math.Acos(cosTheta);
 
 				return (Math.Sin((1f - alpha) * angle) * a + Math.Sin(alpha * angle) * z) / Math.Sin(angle);
 			}
 		}
 
+		// Quadratic interpolation between two quaternions (q1 and q2). s1 and s2 are helper quaternions forming a quadrangle with q1 and q2.
 		public static Quat Squad(Quat q1, Quat q2, Quat s1, Quat s2, float h)
 		{
 			return Quat.Mix(Mix(q1, q2, h), Mix(s1, s2, h), 2 * (1 - h) * h);
+		}
+
+		public static Quat Euler(float x, float y, float z)
+		{
+			return new Quat(new Vector3f(x, y, z));
+		}
+
+		public static Quat Euler(Vector3f angles)
+		{
+			return new Quat(angles);
+		}
+
+		public static Quat AngleAxis(float angle, Vector3f axis)
+		{
+			return new Quat(angle, axis);
+		}
+
+		public static Quat FromToRotation(Vector3f from, Vector3f to)
+		{
+			float angle = Vector3f.Angle(from, to);
+			Vector3f axis = Vector3f.Cross(from, to);
+
+			return AngleAxis(angle, axis.normalized);
 		}
 
 		public static Quat LookAt(Vector3f eye, Vector3f center, Vector3f up)

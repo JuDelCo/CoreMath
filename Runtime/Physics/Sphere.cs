@@ -40,7 +40,7 @@ namespace Ju.Math
 
 		public override string ToString()
 		{
-			return "[ " + position + " , " + radius + " ]";
+			return $"[ {position} , {radius} ]";
 		}
 	}
 }

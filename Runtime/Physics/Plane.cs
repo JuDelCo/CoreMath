@@ -59,7 +59,7 @@ namespace Ju.Math
 
 		public override string ToString()
 		{
-			return "[ " + normal + " , " + distance + " ]";
+			return $"[ {normal} , {distance} ]";
 		}
 	}
 }

@@ -40,7 +40,7 @@ namespace Ju.Math
 			return collision;
 		}
 
-		public static bool Intersection(Ray r1, Ray r2, out Vector2f intersection)
+		public static bool RayIntersection(Ray r1, Ray r2, out Vector2f intersection)
 		{
 			var a = (Vector2f)r1.position;
 			var b = a + (Vector2f)r1.direction;

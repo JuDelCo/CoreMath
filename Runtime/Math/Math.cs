@@ -3,11 +3,13 @@ namespace Ju.Math
 {
 	public static partial class Math
 	{
-		public const float Pi = (float)System.Math.PI;
-		public const float Tau = (float)(System.Math.PI * 2f);
+		public const float Pi = 3.14159265359f;
+		public const float Tau = 6.28318530717959f;
 		public const float Epsilon = 0.000001f;
-		public const float Deg2Rad = 0.0174532925199432957692369076848861271344287188854172f;
-		public const float Rad2Deg = 57.295779513082320876798154814105170332405472466564321f;
+		public const float GoldenRatio = 1.61803398875f;
+		public const float Sqrt2 = 1.41421356237f;
+		public const float Deg2Rad = Tau / 360f;
+		public const float Rad2Deg = 360f / Tau;
 
 		public static int Abs(int value)
 		{
@@ -24,6 +26,7 @@ namespace Ju.Math
 			return (float)System.Math.Acos(value);
 		}
 
+		// Angle difference between two angles in radians.
 		public static float AngleDiff(float radiansA, float radiansB)
 		{
 			var num = Math.Repeat(radiansB - radiansA, 2 * Math.Pi);
@@ -89,6 +92,20 @@ namespace Ju.Math
 		public static float Cos(float value)
 		{
 			return (float)System.Math.Cos(value);
+		}
+
+		// Smoothing rate dictates the proportion of target reached after one second.
+		// 1 will be inmediate target value, 0 will be always the source value (no smoothing in both cases).
+		public static float DampSmooth(float smoothing, float dt)
+		{
+			return (1f - Pow((1f - smoothing), dt));
+		}
+
+		// Lambda rate has a range between zero and infinity (which expresses the fact that will never reach b when damping).
+		// Is sightly faster than the Pow based version.
+		public static float DampLambda(float lambda, float dt)
+		{
+			return (1f - Exp(-lambda * dt));
 		}
 
 		public static float Exp(float value)
@@ -205,12 +222,31 @@ namespace Ju.Math
 
 		public static float Mix(float a, float b, float alpha)
 		{
-			if (alpha > 1f)
+			return Lerp(a, b, alpha);
+		}
+
+		public static float MoveTowards(float a, float b, float maxDelta)
+		{
+			if (Abs(b - a) <= maxDelta)
 			{
-				alpha = 1f;
+				return b;
 			}
 
-			return a * (1f - alpha) + b * alpha;
+			return a + Sign(b - a) * maxDelta;
+		}
+
+		public static float MoveTowardsAngle(float a, float b, float maxDelta)
+		{
+			float deltaAngle = AngleDiff(a, b);
+
+			if (-maxDelta < deltaAngle && deltaAngle < maxDelta)
+			{
+				return b;
+			}
+
+			b = a + deltaAngle;
+
+			return MoveTowards(a, b, maxDelta);
 		}
 
 		public static float PingPong(float value, float length)
@@ -275,11 +311,10 @@ namespace Ju.Math
 			return (float)System.Math.Tan(value);
 		}
 
+		// Angle needed between a and b so that their extremities are spaced with a specific length.
 		public static float TriangleAngle(float length, float a, float b)
 		{
-			// Angle needed between a and b so that their extremities are spaced with a specific length.
 			// https://en.wikipedia.org/wiki/Law_of_cosines
-
 			return Math.Acos(Math.Clamp((a * a + b * b - length * length) / (2f * a * b), -1f, 1f));
 		}
 	}

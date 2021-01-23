@@ -55,7 +55,7 @@ namespace Ju.Math
 
 		public override string ToString()
 		{
-			return "[ " + position + " , " + direction + " ]";
+			return $"[ {position} , {direction} ]";
 		}
 	}
 }

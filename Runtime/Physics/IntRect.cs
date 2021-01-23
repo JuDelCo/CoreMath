@@ -133,7 +133,7 @@ namespace Ju.Math
 
 		public override string ToString()
 		{
-			return "[ " + x + " , " + y + " , " + width + " , " + height + " ]";
+			return $"[ {x} , {y} , {width} , {height} ]";
 		}
 	}
 }

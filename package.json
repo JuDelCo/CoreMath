@@ -2,7 +2,7 @@
   "name": "com.judelco.core.math",
   "displayName": "JuCore Math",
   "description": "Linear algebra math library and utils",
-  "version": "1.2.0",
+  "version": "1.3.0",
   "unity": "2018.3",
   "dependencies": {},
   "type": "library",
@@ -15,7 +15,7 @@
   ],
   "author": {
     "name": "JuDelCo",
-    "url": "https://github.com/JuDelCo"
+    "url": "https://twitter.com/JuDelCo"
   },
   "repository": {
     "type": "git",

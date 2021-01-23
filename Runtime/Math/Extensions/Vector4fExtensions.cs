@@ -41,6 +41,11 @@ namespace Ju.Math
 			get { return ((x * x + y * y) + (z * z + w * w)); }
 		}
 
+		public Vector4f normalized
+		{
+			get { return Normalize(this); }
+		}
+
 #pragma warning restore IDE1006
 
 		public static Vector4i Ceil(Vector4f v)
@@ -70,17 +75,19 @@ namespace Ju.Math
 
 		public static Vector4f Mix(Vector4f a, Vector4f b, float alpha)
 		{
-			if (alpha > 1f)
-			{
-				alpha = 1f;
-			}
-
-			return a * (1f - alpha) + b * alpha;
+			return Lerp(a, b, alpha);
 		}
 
 		public static Vector4f Normalize(Vector4f v)
 		{
-			return v / v.length;
+			var length = v.length;
+
+			if (length > Math.Epsilon)
+			{
+				return v / length;
+			}
+
+			return Vector4f.zero;
 		}
 
 		public static Vector4f Lerp(Vector4f a, Vector4f b, float alpha, bool extrapolate = false)

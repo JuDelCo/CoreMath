@@ -45,6 +45,11 @@ namespace Ju.Math
 			get { return ((x * x + y * y) + z * z); }
 		}
 
+		public Vector3f normalized
+		{
+			get { return Normalize(this); }
+		}
+
 #pragma warning restore IDE1006
 
 		public static Vector3i Ceil(Vector3f v)
@@ -79,17 +84,19 @@ namespace Ju.Math
 
 		public static Vector3f Mix(Vector3f a, Vector3f b, float alpha)
 		{
-			if (alpha > 1f)
-			{
-				alpha = 1f;
-			}
-
-			return a * (1f - alpha) + b * alpha;
+			return Lerp(a, b, alpha);
 		}
 
 		public static Vector3f Normalize(Vector3f v)
 		{
-			return v / v.length;
+			var length = v.length;
+
+			if (length > Math.Epsilon)
+			{
+				return v / length;
+			}
+
+			return Vector3f.zero;
 		}
 
 		public static Vector3f Lerp(Vector3f a, Vector3f b, float alpha, bool extrapolate = false)
@@ -116,6 +123,19 @@ namespace Ju.Math
 			return eta * incident - (eta * dNI + Math.Sqrt(k)) * normal;
 		}
 
+		// Project 3D vector in a plane formed by the provided normal.
+		public static Vector3f ProjectOnPlane(Vector3f vector, Vector3f normal)
+		{
+			return vector - normal * Dot(vector, normal);
+		}
+
+		// Project 3D direction vector in a plane formed by the provided normal (will be normalized).
+		public static Vector3f ProjectDirectionOnPlane(Vector3f direction, Vector3f normal)
+		{
+			return Normalize(ProjectOnPlane(direction, normal));
+		}
+
+		// Angle formed by two 3D vectors.
 		public static float Angle(Vector3f a, Vector3f b)
 		{
 			if (Math.Sqrt(a.lengthSqr * b.lengthSqr) < Math.Epsilon)
@@ -126,6 +146,7 @@ namespace Ju.Math
 			return Math.Acos(Math.Clamp(Vector3f.Dot(Vector3f.Normalize(a), Vector3f.Normalize(b)), -1f, 1f));
 		}
 
+		// Angle formed by two 3D vectors along a provided axis.
 		public static float SignedAngle(Vector3f from, Vector3f to, Vector3f axis)
 		{
 			var angle = Vector3f.Angle(from, to);
@@ -133,6 +154,19 @@ namespace Ju.Math
 			var sign = Math.Sign(axis.x * cross.x + axis.y * cross.y + axis.z * cross.z);
 
 			return angle * sign;
+		}
+
+		public static Vector3f MoveTowards(Vector3f from, Vector3f to, float maxDelta)
+		{
+			var a = (to - from);
+			var length = a.length;
+
+			if (length <= maxDelta || length == 0f)
+			{
+				return to;
+			}
+
+			return from + ((a / length) * maxDelta);
 		}
 
 		public static Vector3i Round(Vector3f v)

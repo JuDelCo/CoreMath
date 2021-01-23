@@ -72,7 +72,7 @@ namespace Ju.Math
 
 		public override string ToString()
 		{
-			return "[ " + centerPosition + " , " + boxSize + " ]";
+			return $"[ {centerPosition} , {boxSize} ]";
 		}
 	}
 }

@@ -19,7 +19,7 @@ Install
 If you are using Unity, update the dependencies in the ```/Packages/manifest.json``` file in your project folder with:
 
 ```
-	"com.judelco.core.math": "https://github.com/JuDelCo/CoreMath.git#v1.2.0",
+	"com.judelco.core.math": "https://github.com/JuDelCo/CoreMath.git#v1.3.0",
 ```
 
 otherwise, use this package as it is in native C# applications, it will work just fine.
@@ -63,7 +63,7 @@ Contents
 The MIT License (MIT)
 =====================
 
-Copyright © 2017-2020 Juan Delgado (JuDelCo)
+Copyright © 2017-2021 Juan Delgado (JuDelCo)
 
 Permission is hereby granted, free of charge, to any person obtaining a copy
 of this software and associated documentation files (the "Software"), to deal

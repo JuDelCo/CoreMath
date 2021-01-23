@@ -50,6 +50,11 @@ namespace Ju.Math
 			get { return ((x * x + y * y) + z * z); }
 		}
 
+		public Vector3f normalized
+		{
+			get { return Normalize(this); }
+		}
+
 #pragma warning restore IDE1006
 
 		public static Vector3i Cross(Vector3i a, Vector3i b)
@@ -74,17 +79,19 @@ namespace Ju.Math
 
 		public static Vector3f Mix(Vector3i a, Vector3i b, float alpha)
 		{
-			if (alpha > 1f)
-			{
-				alpha = 1f;
-			}
-
-			return a * (1f - alpha) + b * alpha;
+			return Lerp(a, b, alpha);
 		}
 
 		public static Vector3f Normalize(Vector3i v)
 		{
-			return v / v.length;
+			var length = v.length;
+
+			if (length > Math.Epsilon)
+			{
+				return v / length;
+			}
+
+			return Vector3f.zero;
 		}
 
 		public static Vector3f Lerp(Vector3i a, Vector3i b, float alpha, bool extrapolate = false)

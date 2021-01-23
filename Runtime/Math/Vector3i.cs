@@ -148,7 +148,7 @@ namespace Ju.Math
 
 		public override string ToString()
 		{
-			return "[ " + x + " , " + y + " , " + z + " ]";
+			return $"[ {x} , {y} , {z} ]";
 		}
 	}
 }

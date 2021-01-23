@@ -191,7 +191,7 @@ namespace Ju.Math
 
 		public override string ToString()
 		{
-			return "[ " + x + " , " + y + " , " + z + " , " + w + " ]";
+			return $"[ {x} , {y} , {z} , {w} ]";
 		}
 	}
 }

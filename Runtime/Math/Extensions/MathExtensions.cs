@@ -78,6 +78,12 @@ namespace Ju.Math
 			return Quat.Cross(a, b);
 		}
 
+		// Angle difference between two angles in radians.
+		public static float DeltaAngle(float radiansA, float radiansB)
+		{
+			return AngleDiff(radiansA, radiansB);
+		}
+
 		public static float Determinant(Matrix3 m)
 		{
 			return Matrix3.Determinant(m);
@@ -338,14 +344,14 @@ namespace Ju.Math
 			return Vector4i.Lerp(a, b, alpha, extrapolate);
 		}
 
-		public static Quat Lerp(Quat a, Quat b, float alpha)
+		public static Quat Lerp(Quat a, Quat b, float alpha, bool extrapolate = false)
 		{
-			return Quat.Lerp(a, b, alpha);
+			return Quat.Lerp(a, b, alpha, extrapolate);
 		}
 
-		public static Quat SLerp(Quat a, Quat b, float alpha)
+		public static Quat SLerp(Quat a, Quat b, float alpha, bool extrapolate = false)
 		{
-			return Quat.SLerp(a, b, alpha);
+			return Quat.SLerp(a, b, alpha, extrapolate);
 		}
 
 		public static Quat Squad(Quat q1, Quat q2, Quat s1, Quat s2, float h)
@@ -443,46 +449,63 @@ namespace Ju.Math
 			return Matrix4.Transpose(m);
 		}
 
+		// Normalized angle 2D vector contained in a circle using the provided radians.
 		public static Vector2f AngleToVector(float radians)
 		{
 			return Vector2f.AngleToVector(radians);
 		}
 
+		// Angle formed by two 2D vectors.
 		public static float Angle(Vector2f a, Vector2f b)
 		{
 			return Vector2f.Angle(a, b);
 		}
 
+		// Angle formed by two 2D vectors.
 		public static float Angle(Vector2i a, Vector2i b)
 		{
 			return Vector2i.Angle(a, b);
 		}
 
-		public static Vector2f Perpendicular(Vector2f a, Vector2f b)
+		// Perpendicular 2D normal to a line formed by two 2D points.
+		public static Vector2f PerpendicularToLine(Vector2f a, Vector2f b)
 		{
-			return Vector2f.Perpendicular(a, b);
+			return Vector2f.PerpendicularToLine(a, b);
 		}
 
-		public static Vector2f Perpendicular(Vector2i a, Vector2i b)
+		// Perpendicular 2D normal to a line formed by two 2D points.
+		public static Vector2f PerpendicularToLine(Vector2i a, Vector2i b)
 		{
-			return Vector2i.Perpendicular(a, b);
+			return Vector2i.PerpendicularToLine(a, b);
 		}
 
-		public static Vector2f Perpendicular(Vector2f v)
+		public static Vector2f PerpendicularCW(Vector2f v)
 		{
-			return Vector2f.Perpendicular(v);
+			return Vector2f.PerpendicularCW(v);
 		}
 
-		public static Vector2i Perpendicular(Vector2i v)
+		public static Vector2f PerpendicularCCW(Vector2f v)
 		{
-			return Vector2i.Perpendicular(v);
+			return Vector2f.PerpendicularCCW(v);
 		}
 
+		public static Vector2i PerpendicularCW(Vector2i v)
+		{
+			return Vector2i.PerpendicularCW(v);
+		}
+
+		public static Vector2i PerpendicularCCW(Vector2i v)
+		{
+			return Vector2i.PerpendicularCCW(v);
+		}
+
+		// 2D point contained in a circle of the provided radius at the provided radians.
 		public static Vector2f PointOnCircle(Vector2f center, float radius, float radians)
 		{
 			return Vector2f.PointOnCircle(center, radius, radians);
 		}
 
+		// 2D point contained in a circle of the provided radius at the provided radians.
 		public static Vector2f PointOnCircle(Vector2i center, float radius, float radians)
 		{
 			return Vector2i.PointOnCircle(center, radius, radians);
