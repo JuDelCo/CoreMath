@@ -1,3 +1,5 @@
+// SPDX-License-Identifier: MIT
+// Copyright (c) 2017-2021 Juan Delgado (@JuDelCo)
 
 namespace Ju.Math
 {
