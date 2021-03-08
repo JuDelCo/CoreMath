@@ -316,44 +316,84 @@ namespace Ju.Math
 			return Quat.Normalize(q);
 		}
 
-		public static Vector2f Lerp(Vector2f a, Vector2f b, float alpha, bool extrapolate = false)
+		public static Vector2f Lerp(Vector2f a, Vector2f b, float alpha)
 		{
-			return Vector2f.Lerp(a, b, alpha, extrapolate);
+			return Vector2f.Lerp(a, b, alpha);
 		}
 
-		public static Vector2f Lerp(Vector2i a, Vector2i b, float alpha, bool extrapolate = false)
+		public static Vector2f LerpClamped(Vector2f a, Vector2f b, float alpha)
 		{
-			return Vector2i.Lerp(a, b, alpha, extrapolate);
+			return Vector2f.LerpClamped(a, b, alpha);
 		}
 
-		public static Vector3f Lerp(Vector3f a, Vector3f b, float alpha, bool extrapolate = false)
+		public static Vector2f Lerp(Vector2i a, Vector2i b, float alpha)
 		{
-			return Vector3f.Lerp(a, b, alpha, extrapolate);
+			return Vector2i.Lerp(a, b, alpha);
 		}
 
-		public static Vector3f Lerp(Vector3i a, Vector3i b, float alpha, bool extrapolate = false)
+		public static Vector2f LerpClamped(Vector2i a, Vector2i b, float alpha)
 		{
-			return Vector3i.Lerp(a, b, alpha, extrapolate);
+			return Vector2i.LerpClamped(a, b, alpha);
 		}
 
-		public static Vector4f Lerp(Vector4f a, Vector4f b, float alpha, bool extrapolate = false)
+		public static Vector3f Lerp(Vector3f a, Vector3f b, float alpha)
 		{
-			return Vector4f.Lerp(a, b, alpha, extrapolate);
+			return Vector3f.Lerp(a, b, alpha);
 		}
 
-		public static Vector4f Lerp(Vector4i a, Vector4i b, float alpha, bool extrapolate = false)
+		public static Vector3f LerpClamped(Vector3f a, Vector3f b, float alpha)
 		{
-			return Vector4i.Lerp(a, b, alpha, extrapolate);
+			return Vector3f.LerpClamped(a, b, alpha);
 		}
 
-		public static Quat Lerp(Quat a, Quat b, float alpha, bool extrapolate = false)
+		public static Vector3f Lerp(Vector3i a, Vector3i b, float alpha)
 		{
-			return Quat.Lerp(a, b, alpha, extrapolate);
+			return Vector3i.Lerp(a, b, alpha);
 		}
 
-		public static Quat SLerp(Quat a, Quat b, float alpha, bool extrapolate = false)
+		public static Vector3f LerpClamped(Vector3i a, Vector3i b, float alpha)
 		{
-			return Quat.SLerp(a, b, alpha, extrapolate);
+			return Vector3i.LerpClamped(a, b, alpha);
+		}
+
+		public static Vector4f Lerp(Vector4f a, Vector4f b, float alpha)
+		{
+			return Vector4f.Lerp(a, b, alpha);
+		}
+
+		public static Vector4f LerpClamped(Vector4f a, Vector4f b, float alpha)
+		{
+			return Vector4f.LerpClamped(a, b, alpha);
+		}
+
+		public static Vector4f Lerp(Vector4i a, Vector4i b, float alpha)
+		{
+			return Vector4i.Lerp(a, b, alpha);
+		}
+
+		public static Vector4f LerpClamped(Vector4i a, Vector4i b, float alpha)
+		{
+			return Vector4i.LerpClamped(a, b, alpha);
+		}
+
+		public static Quat Lerp(Quat a, Quat b, float alpha)
+		{
+			return Quat.Lerp(a, b, alpha);
+		}
+
+		public static Quat LerpClamped(Quat a, Quat b, float alpha)
+		{
+			return Quat.LerpClamped(a, b, alpha);
+		}
+
+		public static Quat Slerp(Quat a, Quat b, float alpha)
+		{
+			return Quat.Slerp(a, b, alpha);
+		}
+
+		public static Quat SlerpClamped(Quat a, Quat b, float alpha)
+		{
+			return Quat.SlerpClamped(a, b, alpha);
 		}
 
 		public static Quat Squad(Quat q1, Quat q2, Quat s1, Quat s2, float h)

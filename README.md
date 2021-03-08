@@ -3,13 +3,15 @@ JuCore Math
 
 JuCore Math is a linear algebra math library. It also contains 2D, 3D physics and Inverse Kinematics methods.
 
+Note: All angles are in radians (except using euler functions).
+
 Any feedback is welcome !
 
 
 See also
 =====================
 
-- [JuCore](https://github.com/JuDelCo/Core) - Core package base (service locator and core services)
+- [JuCore](https://github.com/JuDelCo/Core) - Core package base (service locator and useful services)
 - [JuCore ECS](https://github.com/JuDelCo/CoreECS) - Deterministic lightweight ECS framework
 
 
@@ -19,7 +21,7 @@ Install
 If you are using Unity, update the dependencies in the ```/Packages/manifest.json``` file in your project folder with:
 
 ```
-	"com.judelco.core.math": "https://github.com/JuDelCo/CoreMath.git#v1.4.0",
+	"com.judelco.core.math": "https://github.com/JuDelCo/CoreMath.git#v1.5.0",
 ```
 
 otherwise, use this package as it is in native C# applications, it will work just fine.
@@ -63,7 +65,7 @@ Contents
 The MIT License (MIT)
 =====================
 
-Copyright © 2017-2021 Juan Delgado (JuDelCo)
+Copyright © 2017-2021 Juan Delgado (@JuDelCo)
 
 Permission is hereby granted, free of charge, to any person obtaining a copy
 of this software and associated documentation files (the "Software"), to deal

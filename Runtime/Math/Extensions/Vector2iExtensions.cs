@@ -12,6 +12,29 @@ namespace Ju.Math
 		public static Vector2i up = new Vector2i(0, 1);
 		public static Vector2i down = new Vector2i(0, -1);
 
+		public int this[int i]
+		{
+			get
+			{
+				i %= 2;
+
+				return i == 0 ? x : y;
+			}
+			set
+			{
+				i %= 2;
+
+				if (i == 0)
+				{
+					x = value;
+				}
+				else
+				{
+					y = value;
+				}
+			}
+		}
+
 		public static implicit operator Vector3i(Vector2i vector)
 		{
 			return new Vector3i(vector);
@@ -83,10 +106,14 @@ namespace Ju.Math
 			return Vector2f.zero;
 		}
 
-		public static Vector2f Lerp(Vector2i a, Vector2i b, float alpha, bool extrapolate = false)
+		public static Vector2f Lerp(Vector2i a, Vector2i b, float alpha)
 		{
-			alpha = extrapolate ? alpha : Math.Clamp01(alpha);
-			return a * (1f - alpha) + b * alpha;
+			return a + (alpha * (b - a));
+		}
+
+		public static Vector2f LerpClamped(Vector2i a, Vector2i b, float alpha)
+		{
+			return a + (Math.Clamp01(alpha) * (b - a));
 		}
 
 		public static Vector2f Reflect(Vector2i incident, Vector2i normal)

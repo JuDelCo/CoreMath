@@ -8,6 +8,114 @@ namespace Ju.Math
 		public static Matrix4 zero = new Matrix4(0f, 0f, 0f, 0f, 0f, 0f, 0f, 0f, 0f, 0f, 0f, 0f, 0f, 0f, 0f, 0f);
 		public static Matrix4 identity = new Matrix4(1f, 0f, 0f, 0f, 0f, 1f, 0f, 0f, 0f, 0f, 1f, 0f, 0f, 0f, 0f, 1f);
 
+		public float this[int row, int col]
+		{
+			get
+			{
+				row %= 4;
+				col %= 4;
+
+				if (row == 0)
+				{
+					return col == 0 ? m00 : (col == 1 ? m10 : (col == 2 ? m20 : m30));
+				}
+				else if (row == 1)
+				{
+					return col == 0 ? m01 : (col == 1 ? m11 : (col == 2 ? m21 : m31));
+				}
+				else if (row == 2)
+				{
+					return col == 0 ? m02 : (col == 1 ? m12 : (col == 2 ? m22 : m32));
+				}
+				else
+				{
+					return col == 0 ? m03 : (col == 1 ? m13 : (col == 2 ? m23 : m33));
+				}
+			}
+			set
+			{
+				row %= 4;
+				col %= 4;
+
+				if (row == 0)
+				{
+					if (col == 0)
+					{
+						m00 = value;
+					}
+					else if (col == 1)
+					{
+						m10 = value;
+					}
+					else if (col == 2)
+					{
+						m20 = value;
+					}
+					else
+					{
+						m30 = value;
+					}
+				}
+				else if (row == 1)
+				{
+					if (col == 0)
+					{
+						m01 = value;
+					}
+					else if (col == 1)
+					{
+						m11 = value;
+					}
+					else if (col == 2)
+					{
+						m21 = value;
+					}
+					else
+					{
+						m31 = value;
+					}
+				}
+				else if (row == 2)
+				{
+					if (col == 0)
+					{
+						m02 = value;
+					}
+					else if (col == 1)
+					{
+						m12 = value;
+					}
+					else if (col == 2)
+					{
+						m22 = value;
+					}
+					else
+					{
+						m32 = value;
+					}
+				}
+				else
+				{
+					if (col == 0)
+					{
+						m03 = value;
+					}
+					else if (col == 1)
+					{
+						m13 = value;
+					}
+					else if (col == 2)
+					{
+						m23 = value;
+					}
+					else
+					{
+						m33 = value;
+					}
+				}
+			}
+		}
+
 		public static explicit operator Matrix4(Matrix3 m)
 		{
 			return new Matrix4(m.m00, m.m01, m.m02, 0f, m.m10, m.m11, m.m12, 0f, m.m20, m.m21, m.m22, 0f, 0f, 0f, 0f, 1f);

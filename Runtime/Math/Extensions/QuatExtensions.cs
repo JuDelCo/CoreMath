@@ -116,6 +116,33 @@ namespace Ju.Math
 		{
 		}
 
+		public float this[int i]
+		{
+			get
+			{
+				return i == 0 ? x : (i == 1 ? y : (i == 2 ? z : w));
+			}
+			set
+			{
+				if (i == 0)
+				{
+					x = value;
+				}
+				else if (i == 1)
+				{
+					y = value;
+				}
+				else if (i == 2)
+				{
+					z = value;
+				}
+				else
+				{
+					w = value;
+				}
+			}
+		}
+
 #pragma warning disable IDE1006
 
 		public float length
@@ -227,9 +254,14 @@ namespace Ju.Math
 			return Quat.identity;
 		}
 
-		public static Quat Lerp(Quat a, Quat b, float alpha, bool extrapolate = false)
+		public static Quat Lerp(Quat a, Quat b, float alpha)
 		{
-			alpha = extrapolate ? alpha : Math.Clamp01(alpha);
+			return new Quat(a.x * (1 - alpha) + b.x * alpha, a.y * (1 - alpha) + b.y * alpha, a.z * (1 - alpha) + b.z * alpha, a.w * (1 - alpha) + b.w * alpha);
+		}
+
+		public static Quat LerpClamped(Quat a, Quat b, float alpha)
+		{
+			alpha = Math.Clamp01(alpha);
 			return new Quat(a.x * (1 - alpha) + b.x * alpha, a.y * (1 - alpha) + b.y * alpha, a.z * (1 - alpha) + b.z * alpha, a.w * (1 - alpha) + b.w * alpha);
 		}
 
@@ -245,7 +277,7 @@ namespace Ju.Math
 			return new Quat(matrix);
 		}
 
-		public static Quat SLerp(Quat a, Quat b, float alpha, bool extrapolate = false)
+		public static Quat Slerp(Quat a, Quat b, float alpha)
 		{
 			var z = b;
 			var cosTheta = Dot(a, b);
@@ -258,11 +290,34 @@ namespace Ju.Math
 
 			if (cosTheta > 1f - Math.Epsilon)
 			{
-				return Lerp(a, z, alpha, extrapolate);
+				return Lerp(a, z, alpha);
 			}
 			else
 			{
-				alpha = extrapolate ? alpha : Math.Clamp01(alpha);
+				var angle = Math.Acos(cosTheta);
+
+				return (Math.Sin((1f - alpha) * angle) * a + Math.Sin(alpha * angle) * z) / Math.Sin(angle);
+			}
+		}
+
+		public static Quat SlerpClamped(Quat a, Quat b, float alpha)
+		{
+			var z = b;
+			var cosTheta = Dot(a, b);
+
+			if (cosTheta < 0f)
+			{
+				z = -b;
+				cosTheta = -cosTheta;
+			}
+
+			if (cosTheta > 1f - Math.Epsilon)
+			{
+				return LerpClamped(a, z, alpha);
+			}
+			else
+			{
+				alpha = Math.Clamp01(alpha);
 				var angle = Math.Acos(cosTheta);
 
 				return (Math.Sin((1f - alpha) * angle) * a + Math.Sin(alpha * angle) * z) / Math.Sin(angle);
@@ -285,9 +340,9 @@ namespace Ju.Math
 			return new Quat(angles);
 		}
 
-		public static Quat AngleAxis(float angle, Vector3f axis)
+		public static Quat AngleAxis(float radians, Vector3f axis)
 		{
-			return new Quat(angle, axis);
+			return new Quat(radians, axis);
 		}
 
 		public static Quat FromToRotation(Vector3f from, Vector3f to)

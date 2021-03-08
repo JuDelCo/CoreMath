@@ -8,6 +8,79 @@ namespace Ju.Math
 		public static Matrix3 zero = new Matrix3(0f, 0f, 0f, 0f, 0f, 0f, 0f, 0f, 0f);
 		public static Matrix3 identity = new Matrix3(1f, 0f, 0f, 0f, 1f, 0f, 0f, 0f, 1f);
 
+		public float this[int row, int col]
+		{
+			get
+			{
+				row %= 3;
+				col %= 3;
+
+				if (row == 0)
+				{
+					return col == 0 ? m00 : (col == 1 ? m10 : m20);
+				}
+				else if (row == 1)
+				{
+					return col == 0 ? m01 : (col == 1 ? m11 : m21);
+				}
+				else
+				{
+					return col == 0 ? m02 : (col == 1 ? m12 : m22);
+				}
+			}
+			set
+			{
+				row %= 3;
+				col %= 3;
+
+				if (row == 0)
+				{
+					if (col == 0)
+					{
+						m00 = value;
+					}
+					else if (col == 1)
+					{
+						m10 = value;
+					}
+					else
+					{
+						m20 = value;
+					}
+				}
+				else if (row == 1)
+				{
+					if (col == 0)
+					{
+						m01 = value;
+					}
+					else if (col == 1)
+					{
+						m11 = value;
+					}
+					else
+					{
+						m21 = value;
+					}
+				}
+				else
+				{
+					if (col == 0)
+					{
+						m02 = value;
+					}
+					else if (col == 1)
+					{
+						m12 = value;
+					}
+					else
+					{
+						m22 = value;
+					}
+				}
+			}
+		}
+
 		public static explicit operator Matrix3(Matrix4 m)
 		{
 			return new Matrix3(m.m00, m.m01, m.m02, m.m10, m.m11, m.m12, m.m20, m.m21, m.m22);

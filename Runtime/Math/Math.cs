@@ -115,20 +115,39 @@ namespace Ju.Math
 			return (float)System.Math.Exp(value);
 		}
 
+		public static int FigureLength(int value)
+		{
+			return Floor(Log10(value) + 1);
+		}
+
 		public static int Floor(float value)
 		{
 			return (int)System.Math.Floor(value);
 		}
 
-		public static float Lerp(float a, float b, float alpha, bool extrapolate = false)
+		public static float Frac(float value)
 		{
-			alpha = extrapolate ? alpha : Math.Clamp01(alpha);
-			return a * (1f - alpha) + b * alpha;
+			return value - Math.Floor(value);
 		}
 
-		public static float LerpInverse(float a, float b, float value, bool extrapolate = false)
+		public static float Lerp(float a, float b, float alpha)
 		{
-			value = extrapolate ? value : Math.Clamp(value, a, b);
+			return a + (alpha * (b - a));
+		}
+
+		public static float LerpClamped(float a, float b, float alpha)
+		{
+			return a + (Math.Clamp01(alpha) * (b - a));
+		}
+
+		public static float LerpInverse(float a, float b, float value)
+		{
+			return (value - a) / (b - a);
+		}
+
+		public static float LerpInverseClamped(float a, float b, float value)
+		{
+			value = Math.Clamp(value, a, b);
 			return (value - a) / (b - a);
 		}
 
@@ -227,6 +246,16 @@ namespace Ju.Math
 			return Lerp(a, b, alpha);
 		}
 
+		public static float Mod(int value, int length)
+		{
+			return value - (length * Floor(value / length));
+		}
+
+		public static float Mod(float value, float length)
+		{
+			return value - (length * Floor(value / length));
+		}
+
 		public static float MoveTowards(float a, float b, float maxDelta)
 		{
 			if (Abs(b - a) <= maxDelta)
@@ -237,18 +266,18 @@ namespace Ju.Math
 			return a + Sign(b - a) * maxDelta;
 		}
 
-		public static float MoveTowardsAngle(float a, float b, float maxDelta)
+		public static float MoveTowardsAngle(float radiansA, float radiansB, float maxDelta)
 		{
-			float deltaAngle = AngleDiff(a, b);
+			float deltaAngle = AngleDiff(radiansA, radiansB);
 
 			if (-maxDelta < deltaAngle && deltaAngle < maxDelta)
 			{
-				return b;
+				return radiansB;
 			}
 
-			b = a + deltaAngle;
+			radiansB = radiansA + deltaAngle;
 
-			return MoveTowards(a, b, maxDelta);
+			return MoveTowards(radiansA, radiansB, maxDelta);
 		}
 
 		public static float PingPong(float value, float length)
@@ -314,10 +343,10 @@ namespace Ju.Math
 		}
 
 		// Angle needed between a and b so that their extremities are spaced with a specific length.
-		public static float TriangleAngle(float length, float a, float b)
+		public static float TriangleAngle(float lengthAB, float lengthA, float lengthB)
 		{
 			// https://en.wikipedia.org/wiki/Law_of_cosines
-			return Math.Acos(Math.Clamp((a * a + b * b - length * length) / (2f * a * b), -1f, 1f));
+			return Math.Acos(Math.Clamp((lengthA * lengthA + lengthB * lengthB - lengthAB * lengthAB) / (2f * lengthA * lengthB), -1f, 1f));
 		}
 	}
 }

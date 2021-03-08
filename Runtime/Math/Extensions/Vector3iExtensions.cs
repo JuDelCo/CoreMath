@@ -25,6 +25,33 @@ namespace Ju.Math
 			this.z = z;
 		}
 
+		public int this[int i]
+		{
+			get
+			{
+				i %= 3;
+
+				return i == 0 ? x : (i == 1 ? y : z);
+			}
+			set
+			{
+				i %= 3;
+
+				if (i == 0)
+				{
+					x = value;
+				}
+				else if (i == 1)
+				{
+					y = value;
+				}
+				else
+				{
+					z = value;
+				}
+			}
+		}
+
 		public static implicit operator Vector4i(Vector3i vector)
 		{
 			return new Vector4i(vector);
@@ -96,10 +123,14 @@ namespace Ju.Math
 			return Vector3f.zero;
 		}
 
-		public static Vector3f Lerp(Vector3i a, Vector3i b, float alpha, bool extrapolate = false)
+		public static Vector3f Lerp(Vector3i a, Vector3i b, float alpha)
 		{
-			alpha = extrapolate ? alpha : Math.Clamp01(alpha);
-			return a * (1f - alpha) + b * alpha;
+			return a + (alpha * (b - a));
+		}
+
+		public static Vector3f LerpClamped(Vector3i a, Vector3i b, float alpha)
+		{
+			return a + (Math.Clamp01(alpha) * (b - a));
 		}
 
 		public static Vector3f Reflect(Vector3i incident, Vector3i normal)
