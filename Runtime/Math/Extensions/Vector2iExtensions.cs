@@ -35,14 +35,29 @@ namespace Ju.Math
 			}
 		}
 
-		public static implicit operator Vector3i(Vector2i vector)
-		{
-			return new Vector3i(vector);
-		}
-
 		public static implicit operator Vector2f(Vector2i vector)
 		{
 			return new Vector2f(vector.x, vector.y);
+		}
+
+		public static implicit operator Vector3f(Vector2i vector)
+		{
+			return new Vector3f(vector.x, vector.y, 0f);
+		}
+
+		public static implicit operator Vector3i(Vector2i vector)
+		{
+			return new Vector3i(vector.x, vector.y, 0);
+		}
+
+		public static implicit operator Vector4f(Vector2i vector)
+		{
+			return new Vector4f(vector.x, vector.y, 0f, 0f);
+		}
+
+		public static implicit operator Vector4i(Vector2i vector)
+		{
+			return new Vector4i(vector.x, vector.y, 0, 0);
 		}
 
 #pragma warning disable IDE1006

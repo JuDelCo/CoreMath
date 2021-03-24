@@ -35,9 +35,29 @@ namespace Ju.Math
 			}
 		}
 
+		public static explicit operator Vector2i(Vector2f vector)
+		{
+			return new Vector2i(Math.Round(vector.x), Math.Round(vector.y));
+		}
+
 		public static implicit operator Vector3f(Vector2f vector)
 		{
-			return new Vector3f(vector);
+			return new Vector3f(vector.x, vector.y, 0f);
+		}
+
+		public static explicit operator Vector3i(Vector2f vector)
+		{
+			return new Vector3i(Math.Round(vector.x), Math.Round(vector.y), 0);
+		}
+
+		public static implicit operator Vector4f(Vector2f vector)
+		{
+			return new Vector4f(vector.x, vector.y, 0f, 0f);
+		}
+
+		public static explicit operator Vector4i(Vector2f vector)
+		{
+			return new Vector4i(Math.Round(vector.x), Math.Round(vector.y), 0, 0);
 		}
 
 #pragma warning disable IDE1006

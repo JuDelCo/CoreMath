@@ -2,17 +2,17 @@
 // Author: Kurt Spencer (KdotJPG), modified by JuDelCo
 // Source: https://github.com/KdotJPG/OpenSimplex2/
 
-namespace Ju.Random
+namespace Ju.Math.Random
 {
 	public class OpenSimplex2SmoothNoise : INoise
 	{
 		private const int PSIZE = 2048;
 		private const int PMASK = 2047;
 
-		private short[] perm;
-		private Grad2[] permGrad2;
-		private Grad3[] permGrad3;
-		private Grad4[] permGrad4;
+		private readonly short[] perm;
+		private readonly Grad2[] permGrad2;
+		private readonly Grad3[] permGrad3;
+		private readonly Grad4[] permGrad4;
 
 		public OpenSimplex2SmoothNoise(int seed)
 		{
@@ -28,14 +28,14 @@ namespace Ju.Random
 		{
 			short[] source = new short[PSIZE];
 
-			for (short i = 0; i < PSIZE; i++)
+			for (short i = 0; i < PSIZE; ++i)
 			{
 				source[i] = i;
 			}
 
 			var longSeed = (long)seed;
 
-			for (int i = PSIZE - 1; i >= 0; i--)
+			for (int i = PSIZE - 1; i >= 0; --i)
 			{
 				longSeed = longSeed * 6364136223846793005L + 1442695040888963407L;
 				int r = (int)((longSeed + 31) % (i + 1));
@@ -86,7 +86,7 @@ namespace Ju.Random
 			double s = 0.366025403784439 * (x + y);
 			double xs = x + s, ys = y + s;
 
-			return noise2_Base(xs, ys);
+			return Noise2_Base(xs, ys);
 		}
 
 		/**
@@ -100,14 +100,14 @@ namespace Ju.Random
 			double xx = x * 0.7071067811865476;
 			double yy = y * 1.224744871380249;
 
-			return noise2_Base(yy + xx, yy - xx);
+			return Noise2_Base(yy + xx, yy - xx);
 		}
 
 		/**
          * 2D SuperSimplex noise base.
          * Lookup table implementation inspired by DigitalShadow.
          */
-		private double noise2_Base(double xs, double ys)
+		private double Noise2_Base(double xs, double ys)
 		{
 			double value = 0;
 
@@ -126,7 +126,7 @@ namespace Ju.Random
 			double xi = xsi + ssi, yi = ysi + ssi;
 
 			// Point contributions
-			for (int i = 0; i < 4; i++)
+			for (int i = 0; i < 4; ++i)
 			{
 				LatticePoint2D c = LOOKUP_2D[index + i];
 
@@ -160,7 +160,7 @@ namespace Ju.Random
 			double xr = r - x, yr = r - y, zr = r - z;
 
 			// Evaluate both lattices to form a BCC lattice.
-			return noise3_BCC(xr, yr, zr);
+			return Noise3_BCC(xr, yr, zr);
 		}
 
 		/**
@@ -182,7 +182,7 @@ namespace Ju.Random
 			double zr = xy * 0.577350269189626 + zz;
 
 			// Evaluate both lattices to form a BCC lattice.
-			return noise3_BCC(xr, yr, zr);
+			return Noise3_BCC(xr, yr, zr);
 		}
 
 		/**
@@ -204,7 +204,7 @@ namespace Ju.Random
 			double yr = xz * 0.577350269189626 + yy;
 
 			// Evaluate both lattices to form a BCC lattice.
-			return noise3_BCC(xr, yr, zr);
+			return Noise3_BCC(xr, yr, zr);
 		}
 
 		/**
@@ -213,7 +213,7 @@ namespace Ju.Random
          * It was actually faster to narrow down the points in the loop itself,
          * than to build up the index with enough info to isolate 8 points.
          */
-		private double noise3_BCC(double xr, double yr, double zr)
+		private double Noise3_BCC(double xr, double yr, double zr)
 		{
 			// Get base and offsets inside cube of first lattice.
 			int xrb = NoiseUtil.FastFloor(xr), yrb = NoiseUtil.FastFloor(yr), zrb = NoiseUtil.FastFloor(zr);
@@ -261,7 +261,7 @@ namespace Ju.Random
 			double s = 0.309016994374947 * (x + y + z + w);
 			double xs = x + s, ys = y + s, zs = z + s, ws = w + s;
 
-			return noise4_Base(xs, ys, zs, ws);
+			return Noise4_Base(xs, ys, zs, ws);
 		}
 
 		/**
@@ -275,7 +275,7 @@ namespace Ju.Random
 			double t2 = (z + w) * 0.21939749883706435719 + (x + y) * -0.48214856493302476942;
 			double xs = x + s2, ys = y + s2, zs = z + t2, ws = w + t2;
 
-			return noise4_Base(xs, ys, zs, ws);
+			return Noise4_Base(xs, ys, zs, ws);
 		}
 
 		/**
@@ -288,7 +288,7 @@ namespace Ju.Random
 			double t2 = (y + w) * 0.21939749883706435719 + (x + z) * -0.48214856493302476942;
 			double xs = x + s2, ys = y + t2, zs = z + s2, ws = w + t2;
 
-			return noise4_Base(xs, ys, zs, ws);
+			return Noise4_Base(xs, ys, zs, ws);
 		}
 
 		/**
@@ -303,7 +303,7 @@ namespace Ju.Random
 			double s2 = xyz * -0.16666666666666666 + ww;
 			double xs = x + s2, ys = y + s2, zs = z + s2, ws = -0.5 * xyz + ww;
 
-			return noise4_Base(xs, ys, zs, ws);
+			return Noise4_Base(xs, ys, zs, ws);
 		}
 
 		/**
@@ -312,7 +312,7 @@ namespace Ju.Random
 		 * This isn't as elegant or SIMD/GPU/etc. portable as other approaches,
 		 * but it does compete performance-wise with optimized OpenSimplex1.
 		 */
-		private double noise4_Base(double xs, double ys, double zs, double ws)
+		private double Noise4_Base(double xs, double ys, double zs, double ws)
 		{
 			double value = 0;
 
@@ -355,16 +355,16 @@ namespace Ju.Random
          * Lookup Tables & Gradients
          */
 
-		private static LatticePoint2D[] LOOKUP_2D;
-		private static LatticePoint3D[] LOOKUP_3D;
-		private static LatticePoint4D[][] LOOKUP_4D;
+		private static readonly LatticePoint2D[] LOOKUP_2D;
+		private static readonly LatticePoint3D[] LOOKUP_3D;
+		private static readonly LatticePoint4D[][] LOOKUP_4D;
 
 		private const double N2 = 0.05481866495625118;
 		private const double N3 = 0.2781926117527186;
 		private const double N4 = 0.11127401889945551;
-		private static Grad2[] GRADIENTS_2D;
-		private static Grad3[] GRADIENTS_3D;
-		private static Grad4[] GRADIENTS_4D;
+		private static readonly Grad2[] GRADIENTS_2D;
+		private static readonly Grad3[] GRADIENTS_3D;
+		private static readonly Grad4[] GRADIENTS_4D;
 
 		static OpenSimplex2SmoothNoise()
 		{
@@ -372,7 +372,7 @@ namespace Ju.Random
 			LOOKUP_3D = new LatticePoint3D[8];
 			LOOKUP_4D = new LatticePoint4D[256][];
 
-			for (int i = 0; i < 8; i++)
+			for (int i = 0; i < 8; ++i)
 			{
 				int i1, j1, i2, j2;
 
@@ -393,7 +393,7 @@ namespace Ju.Random
 				LOOKUP_2D[i * 4 + 3] = new LatticePoint2D(i2, j2);
 			}
 
-			for (int i = 0; i < 8; i++)
+			for (int i = 0; i < 8; ++i)
 			{
 				int i1, j1, k1, i2, j2, k2;
 				i1 = (i >> 0) & 1; j1 = (i >> 1) & 1; k1 = (i >> 2) & 1;
@@ -719,7 +719,7 @@ namespace Ju.Random
 
 			LatticePoint4D[] latticePoints = new LatticePoint4D[256];
 
-			for (int i = 0; i < 256; i++)
+			for (int i = 0; i < 256; ++i)
 			{
 				int cx = ((i >> 0) & 3) - 1;
 				int cy = ((i >> 2) & 3) - 1;
@@ -728,11 +728,11 @@ namespace Ju.Random
 				latticePoints[i] = new LatticePoint4D(cx, cy, cz, cw);
 			}
 
-			for (int i = 0; i < 256; i++)
+			for (int i = 0; i < 256; ++i)
 			{
 				LOOKUP_4D[i] = new LatticePoint4D[lookup4DPregen[i].Length];
 
-				for (int j = 0; j < lookup4DPregen[i].Length; j++)
+				for (int j = 0; j < lookup4DPregen[i].Length; ++j)
 				{
 					LOOKUP_4D[i][j] = latticePoints[lookup4DPregen[i][j]];
 				}
@@ -767,12 +767,12 @@ namespace Ju.Random
 				new Grad2(-0.130526192220052,  0.99144486137381)
 			};
 
-			for (int i = 0; i < grad2.Length; i++)
+			for (int i = 0; i < grad2.Length; ++i)
 			{
 				grad2[i].dx /= N2; grad2[i].dy /= N2;
 			}
 
-			for (int i = 0; i < PSIZE; i++)
+			for (int i = 0; i < PSIZE; ++i)
 			{
 				GRADIENTS_2D[i] = grad2[i % grad2.Length];
 			}
@@ -830,12 +830,12 @@ namespace Ju.Random
 				new Grad3( 1.1721513422464978,  3.0862664687972017,  0.0)
 			};
 
-			for (int i = 0; i < grad3.Length; i++)
+			for (int i = 0; i < grad3.Length; ++i)
 			{
 				grad3[i].dx /= N3; grad3[i].dy /= N3; grad3[i].dz /= N3;
 			}
 
-			for (int i = 0; i < PSIZE; i++)
+			for (int i = 0; i < PSIZE; ++i)
 			{
 				GRADIENTS_3D[i] = grad3[i % grad3.Length];
 			}
@@ -1005,12 +1005,12 @@ namespace Ju.Random
 				new Grad4( 0.753341017856078,     0.37968289875261624,   0.37968289875261624,   0.37968289875261624)
 			};
 
-			for (int i = 0; i < grad4.Length; i++)
+			for (int i = 0; i < grad4.Length; ++i)
 			{
 				grad4[i].dx /= N4; grad4[i].dy /= N4; grad4[i].dz /= N4; grad4[i].dw /= N4;
 			}
 
-			for (int i = 0; i < PSIZE; i++)
+			for (int i = 0; i < PSIZE; ++i)
 			{
 				GRADIENTS_4D[i] = grad4[i % grad4.Length];
 			}

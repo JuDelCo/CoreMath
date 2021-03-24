@@ -4,7 +4,7 @@
 
 using System.Runtime.CompilerServices;
 
-namespace Ju.Random
+namespace Ju.Math.Random
 {
 	using Ju.Math;
 
@@ -47,11 +47,11 @@ namespace Ju.Random
 				this.seed = seed;
 				table = new int[size];
 
-				var random = new System.Random(this.seed);
+				var random = new RandomGenerator(this.seed);
 
-				for (int i = 0; i < size; i++)
+				for (int i = 0; i < size; ++i)
 				{
-					table[i] = random.Next();
+					table[i] = random.Int();
 				}
 			}
 

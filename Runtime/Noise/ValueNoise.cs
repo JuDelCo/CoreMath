@@ -2,7 +2,7 @@
 // Author: Scrawk, modified by JuDelCo
 // Source: https://github.com/Scrawk/Procedural-Noise
 
-namespace Ju.Random
+namespace Ju.Math.Random
 {
 	using Ju.Math;
 

@@ -61,6 +61,11 @@ namespace Ju.Math
 			return (float)System.Math.Atan2(y, x);
 		}
 
+		public static float Atan2xy(float x, float y)
+		{
+			return (float)System.Math.Atan2(y, x);
+		}
+
 		public static int Ceil(float value)
 		{
 			return (int)System.Math.Ceiling(value);
@@ -211,6 +216,11 @@ namespace Ju.Math
 			return ((a + b + c) / 3f);
 		}
 
+		public static float Mid(float a, float b, float c, float d)
+		{
+			return ((a + b + c + d) / 4f);
+		}
+
 		public static int Min(int a, int b)
 		{
 			return System.Math.Min(a, b);
@@ -322,6 +332,11 @@ namespace Ju.Math
 			return System.Math.Sign(value);
 		}
 
+		public static int SignBinary(float value)
+		{
+			return value < 0f ? -1 : 1;
+		}
+
 		public static float Sqrt(float value)
 		{
 			return (float)System.Math.Sqrt(value);
@@ -340,6 +355,16 @@ namespace Ju.Math
 		public static float Tan(float value)
 		{
 			return (float)System.Math.Tan(value);
+		}
+
+		public static float ToDegrees(float radians)
+		{
+			return radians * Rad2Deg;
+		}
+
+		public static float ToRadians(float degrees)
+		{
+			return degrees * Deg2Rad;
 		}
 
 		// Angle needed between a and b so that their extremities are spaced with a specific length.

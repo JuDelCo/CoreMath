@@ -2,7 +2,7 @@
 // Author: Steven Worley, implemented by Scrawk, modified by JuDelCo
 // Source: https://github.com/Scrawk/Procedural-Noise/blob/master/Assets/ProceduralNoise/Noise/WorleyNoise.cs
 
-namespace Ju.Random
+namespace Ju.Math.Random
 {
 	using Ju.Math;
 
@@ -15,7 +15,7 @@ namespace Ju.Random
 		public DistanceFunction Distance { get; set; }
 		public CombinationFunction Combination { get; set; }
 
-		private NoiseUtil.PermutationTable perm { get; set; }
+		private NoiseUtil.PermutationTable Perm { get; set; }
 		private const float K = 1.0f / 7.0f;
 		private const float Ko = 3.0f / 7.0f;
 		private static readonly float[] offsetF = new float[] { -0.5f, 0.5f, 1.5f };
@@ -26,12 +26,12 @@ namespace Ju.Random
 			Distance = distanceFunc;
 			Combination = combinationFunc;
 
-			perm = new NoiseUtil.PermutationTable(1024, 255, seed);
+			Perm = new NoiseUtil.PermutationTable(1024, 255, seed);
 		}
 
 		public void ChangeSeed(int seed)
 		{
-			perm.Build(seed);
+			Perm.Build(seed);
 		}
 
 		public float Sample1D(float x)
@@ -40,9 +40,9 @@ namespace Ju.Random
 			float Pf0 = Math.Frac(x);
 
 			var pX = new Vector3f();
-			pX.x = perm[Pi0 - 1];
-			pX.y = perm[Pi0];
-			pX.z = perm[Pi0 + 1];
+			pX.x = Perm[Pi0 - 1];
+			pX.y = Perm[Pi0];
+			pX.z = Perm[Pi0 + 1];
 
 			float d0, d1, d2;
 			float F0 = float.PositiveInfinity;
@@ -52,9 +52,9 @@ namespace Ju.Random
 			int px, py, pz;
 			float oxx, oxy, oxz;
 
-			px = perm[(int)pX.x];
-			py = perm[(int)pX.y];
-			pz = perm[(int)pX.z];
+			px = Perm[(int)pX.x];
+			py = Perm[(int)pX.y];
+			pz = Perm[(int)pX.z];
 
 			oxx = Math.Frac(px * K) - Ko;
 			oxy = Math.Frac(py * K) - Ko;
@@ -88,9 +88,9 @@ namespace Ju.Random
 			float Pf1 = Math.Frac(y);
 
 			var pX = new Vector3f();
-			pX.x = perm[Pi0 - 1];
-			pX.y = perm[Pi0];
-			pX.z = perm[Pi0 + 1];
+			pX.x = Perm[Pi0 - 1];
+			pX.y = Perm[Pi0];
+			pX.z = Perm[Pi0 + 1];
 
 			float d0, d1, d2;
 			float F0 = float.PositiveInfinity;
@@ -101,11 +101,11 @@ namespace Ju.Random
 			float oxx, oxy, oxz;
 			float oyx, oyy, oyz;
 
-			for (int i = 0; i < 3; i++)
+			for (int i = 0; i < 3; ++i)
 			{
-				px = perm[(int)pX[i], Pi1 - 1];
-				py = perm[(int)pX[i], Pi1];
-				pz = perm[(int)pX[i], Pi1 + 1];
+				px = Perm[(int)pX[i], Pi1 - 1];
+				py = Perm[(int)pX[i], Pi1];
+				pz = Perm[(int)pX[i], Pi1 + 1];
 
 				oxx = Math.Frac(px * K) - Ko;
 				oxy = Math.Frac(py * K) - Ko;
@@ -146,14 +146,14 @@ namespace Ju.Random
 			float Pf2 = Math.Frac(z);
 
 			var pX = new Vector3f();
-			pX.x = perm[Pi0 - 1];
-			pX.y = perm[Pi0];
-			pX.z = perm[Pi0 + 1];
+			pX.x = Perm[Pi0 - 1];
+			pX.y = Perm[Pi0];
+			pX.z = Perm[Pi0 + 1];
 
 			var pY = new Vector3f();
-			pY.x = perm[Pi1 - 1];
-			pY.y = perm[Pi1];
-			pY.z = perm[Pi1 + 1];
+			pY.x = Perm[Pi1 - 1];
+			pY.y = Perm[Pi1];
+			pY.z = Perm[Pi1 + 1];
 
 			float d0, d1, d2;
 			float F0 = 1e6f;
@@ -165,13 +165,13 @@ namespace Ju.Random
 			float oyx, oyy, oyz;
 			float ozx, ozy, ozz;
 
-			for (int i = 0; i < 3; i++)
+			for (int i = 0; i < 3; ++i)
 			{
-				for (int j = 0; j < 3; j++)
+				for (int j = 0; j < 3; ++j)
 				{
-					px = perm[(int)pX[i], (int)pY[j], Pi2 - 1];
-					py = perm[(int)pX[i], (int)pY[j], Pi2];
-					pz = perm[(int)pX[i], (int)pY[j], Pi2 + 1];
+					px = Perm[(int)pX[i], (int)pY[j], Pi2 - 1];
+					py = Perm[(int)pX[i], (int)pY[j], Pi2];
+					pz = Perm[(int)pX[i], (int)pY[j], Pi2 + 1];
 
 					oxx = Math.Frac(px * K) - Ko;
 					oxy = Math.Frac(py * K) - Ko;
@@ -181,9 +181,9 @@ namespace Ju.Random
 					oyy = Math.Mod(Math.Floor(py * K), 7.0f) * K - Ko;
 					oyz = Math.Mod(Math.Floor(pz * K), 7.0f) * K - Ko;
 
-					px = perm[px];
-					py = perm[py];
-					pz = perm[pz];
+					px = Perm[px];
+					py = Perm[py];
+					pz = Perm[pz];
 
 					ozx = Math.Frac(px * K) - Ko;
 					ozy = Math.Frac(py * K) - Ko;

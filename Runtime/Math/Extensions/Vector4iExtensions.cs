@@ -57,6 +57,21 @@ namespace Ju.Math
 			}
 		}
 
+		public static implicit operator Vector2f(Vector4i vector)
+		{
+			return new Vector2f(vector.x, vector.y);
+		}
+
+		public static implicit operator Vector2i(Vector4i vector)
+		{
+			return new Vector2i(vector.x, vector.y);
+		}
+
+		public static implicit operator Vector3f(Vector4i vector)
+		{
+			return new Vector3f(vector.x, vector.y, vector.z);
+		}
+
 		public static implicit operator Vector3i(Vector4i vector)
 		{
 			return new Vector3i(vector.x, vector.y, vector.z);

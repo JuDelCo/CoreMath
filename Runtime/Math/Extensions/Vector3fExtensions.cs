@@ -52,14 +52,29 @@ namespace Ju.Math
 			}
 		}
 
-		public static implicit operator Vector4f(Vector3f vector)
-		{
-			return new Vector4f(vector);
-		}
-
 		public static implicit operator Vector2f(Vector3f vector)
 		{
 			return new Vector2f(vector.x, vector.y);
+		}
+
+		public static explicit operator Vector2i(Vector3f vector)
+		{
+			return new Vector2i(Math.Round(vector.x), Math.Round(vector.y));
+		}
+
+		public static explicit operator Vector3i(Vector3f vector)
+		{
+			return new Vector3i(Math.Round(vector.x), Math.Round(vector.y), Math.Round(vector.z));
+		}
+
+		public static implicit operator Vector4f(Vector3f vector)
+		{
+			return new Vector4f(vector.x, vector.y, vector.z, 0f);
+		}
+
+		public static explicit operator Vector4i(Vector3f vector)
+		{
+			return new Vector4i(Math.Round(vector.x), Math.Round(vector.y), Math.Round(vector.z), 0);
 		}
 
 #pragma warning disable IDE1006

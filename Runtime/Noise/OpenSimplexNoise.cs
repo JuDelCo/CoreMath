@@ -2,7 +2,7 @@
 // Author: Kurt Spencer (KdotJPG), optimized by DigitalShadow, modified by JuDelCo
 // Source: https://gist.github.com/digitalshadow/134a3a02b67cecd72181/
 
-namespace Ju.Random
+namespace Ju.Math.Random
 {
 	public class OpenSimplexNoise : INoise
 	{
@@ -20,7 +20,7 @@ namespace Ju.Random
 		{
 			var source = new byte[256];
 
-			for (int i = 0; i < 256; i++)
+			for (int i = 0; i < 256; ++i)
 			{
 				source[i] = (byte)i;
 			}
@@ -30,7 +30,7 @@ namespace Ju.Random
 			longSeed = longSeed * 6364136223846793005L + 1442695040888963407L;
 			longSeed = longSeed * 6364136223846793005L + 1442695040888963407L;
 
-			for (int i = 255; i >= 0; i--)
+			for (int i = 255; i >= 0; --i)
 			{
 				longSeed = longSeed * 6364136223846793005L + 1442695040888963407L;
 				int r = (int)((longSeed + 31) % (i + 1));
@@ -381,12 +381,12 @@ namespace Ju.Random
 		private const double NORM_3D = 1.0 / 103.0;
 		private const double NORM_4D = 1.0 / 30.0;
 
-		private byte[] perm;
-		private byte[] perm2D;
-		private byte[] perm3D;
-		private byte[] perm4D;
+		private readonly byte[] perm;
+		private readonly byte[] perm2D;
+		private readonly byte[] perm3D;
+		private readonly byte[] perm4D;
 
-		private static double[] gradients2D = new double[]
+		private static readonly double[] gradients2D = new double[]
 		{
 			 5,  2,    2,  5,
 			-5,  2,   -2,  5,
@@ -394,7 +394,7 @@ namespace Ju.Random
 			-5, -2,   -2, -5,
 		};
 
-		private static double[] gradients3D =
+		private static readonly double[] gradients3D =
 		{
 			-11,  4,  4,     -4,  11,  4,    -4,  4,  11,
 			 11,  4,  4,      4,  11,  4,     4,  4,  11,
@@ -406,7 +406,7 @@ namespace Ju.Random
 			 11, -4, -4,      4, -11, -4,     4, -4, -11,
 		};
 
-		private static double[] gradients4D =
+		private static readonly double[] gradients4D =
 		{
 			 3,  1,  1,  1,      1,  3,  1,  1,      1,  1,  3,  1,      1,  1,  1,  3,
 			-3,  1,  1,  1,     -1,  3,  1,  1,     -1,  1,  3,  1,     -1,  1,  1,  3,
@@ -426,9 +426,9 @@ namespace Ju.Random
 			-3, -1, -1, -1,     -1, -3, -1, -1,     -1, -1, -3, -1,     -1, -1, -1, -3,
 		};
 
-		private static Contribution2[] lookup2D;
-		private static Contribution3[] lookup3D;
-		private static Contribution4[] lookup4D;
+		private static readonly Contribution2[] lookup2D;
+		private static readonly Contribution3[] lookup3D;
+		private static readonly Contribution4[] lookup4D;
 
 		private class Contribution2
 		{
