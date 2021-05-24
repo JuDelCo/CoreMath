@@ -1,7 +1,7 @@
 JuCore Math
 =====================
 
-JuCore Math is a linear algebra math library. It also contains 2D, 3D physics and Inverse Kinematics methods.
+JuCore Math is a linear algebra math library. It also contains 2D, 3D physics, noise generators, random functions and Inverse Kinematics methods.
 
 Note: All angles are in radians (except using euler functions).
 
@@ -15,16 +15,14 @@ See also
 - [JuCore ECS](https://github.com/JuDelCo/CoreECS) - Deterministic lightweight ECS framework
 
 
-Install
+Install (Unity)
 =====================
 
-If you are using Unity, update the dependencies in the ```/Packages/manifest.json``` file in your project folder with:
+Update the dependencies in the ```/Packages/manifest.json``` file in your project folder with:
 
 ```
-	"com.judelco.core.math": "https://github.com/JuDelCo/CoreMath.git#v1.5.0",
+	"com.judelco.core.math": "https://github.com/JuDelCo/CoreMath.git#v1.7.0",
 ```
-
-otherwise, use this package as it is in native C# applications, it will work just fine.
 
 
 Contents
@@ -34,6 +32,7 @@ Contents
 
 - ```Math```
 - ```Bezier```
+- ```Bresenham```
 - ```Frustum```
 - ```Matrix3```
 - ```Matrix4```
@@ -44,6 +43,22 @@ Contents
 - ```Vector3i```
 - ```Vector4f```
 - ```Vector4i```
+
+#### Classes (Noise)
+
+- ```ValueNoise```
+- ```WorleyNoise```
+- ```OpenSimplexNoise```
+- ```OpenSimplex2FastNoise```
+- ```OpenSimplex2SmoothNoise```
+
+#### Classes (Random)
+
+- ```Random```
+- ```RandomMath```
+- ```RandomNumber```
+- ```RandomDirection```
+- ```RandomPhysics```
 
 #### Classes (Physics)
 
