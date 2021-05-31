@@ -1,9 +1,11 @@
 // SPDX-License-Identifier: MIT
 // Copyright (c) 2017-2021 Juan Delgado (@JuDelCo)
 
+using System;
+
 namespace Ju.Math
 {
-	public partial struct IntRect
+	public partial struct IntRect : IEquatable<IntRect>
 	{
 		public int x;
 		public int y;
@@ -116,6 +118,11 @@ namespace Ju.Math
 				hash = hash * 23 + height.GetHashCode();
 				return hash;
 			}
+		}
+
+		public bool Equals(IntRect other)
+		{
+			return (this == other);
 		}
 
 		public override bool Equals(object obj)

@@ -1,9 +1,11 @@
 // SPDX-License-Identifier: MIT
 // Copyright (c) 2017-2021 Juan Delgado (@JuDelCo)
 
+using System;
+
 namespace Ju.Math
 {
-	public partial struct Matrix4
+	public partial struct Matrix4 : IEquatable<Matrix4>
 	{
 		public float m00;
 		public float m01;
@@ -197,6 +199,11 @@ namespace Ju.Math
 				hash = (hash * 23) ^ m33.GetHashCode();
 				return hash;
 			}
+		}
+
+		public bool Equals(Matrix4 other)
+		{
+			return (this == other);
 		}
 
 		public override bool Equals(object obj)

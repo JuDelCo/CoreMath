@@ -1,9 +1,11 @@
 // SPDX-License-Identifier: MIT
 // Copyright (c) 2017-2021 Juan Delgado (@JuDelCo)
 
+using System;
+
 namespace Ju.Math
 {
-	public partial struct Ray
+	public partial struct Ray : IEquatable<Ray>
 	{
 		public Vector3f position;
 		public Vector3f direction;
@@ -38,6 +40,11 @@ namespace Ju.Math
 				hash = hash * 23 + direction.GetHashCode();
 				return hash;
 			}
+		}
+
+		public bool Equals(Ray other)
+		{
+			return (this == other);
 		}
 
 		public override bool Equals(object obj)

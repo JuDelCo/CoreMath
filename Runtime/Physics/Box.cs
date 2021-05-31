@@ -1,9 +1,11 @@
 // SPDX-License-Identifier: MIT
 // Copyright (c) 2017-2021 Juan Delgado (@JuDelCo)
 
+using System;
+
 namespace Ju.Math
 {
-	public partial struct Box
+	public partial struct Box : IEquatable<Box>
 	{
 		private Vector3f centerPosition;
 		private Vector3f boxSize;
@@ -55,6 +57,11 @@ namespace Ju.Math
 				hash = hash * 23 + max.GetHashCode();
 				return hash;
 			}
+		}
+
+		public bool Equals(Box other)
+		{
+			return (this == other);
 		}
 
 		public override bool Equals(object obj)

@@ -1,9 +1,11 @@
 // SPDX-License-Identifier: MIT
 // Copyright (c) 2017-2021 Juan Delgado (@JuDelCo)
 
+using System;
+
 namespace Ju.Math
 {
-	public partial struct Sphere
+	public partial struct Sphere : IEquatable<Sphere>
 	{
 		public Vector3f position;
 		public float radius;
@@ -23,6 +25,11 @@ namespace Ju.Math
 				hash = hash * 23 + radius.GetHashCode();
 				return hash;
 			}
+		}
+
+		public bool Equals(Sphere other)
+		{
+			return (this == other);
 		}
 
 		public override bool Equals(object obj)

@@ -1,9 +1,11 @@
 // SPDX-License-Identifier: MIT
 // Copyright (c) 2017-2021 Juan Delgado (@JuDelCo)
 
+using System;
+
 namespace Ju.Math
 {
-	public partial struct Vector4f
+	public partial struct Vector4f : IEquatable<Vector4f>
 	{
 		public float x;
 		public float y;
@@ -174,6 +176,11 @@ namespace Ju.Math
 				hash = hash * 23 + w.GetHashCode();
 				return hash;
 			}
+		}
+
+		public bool Equals(Vector4f other)
+		{
+			return (this == other);
 		}
 
 		public override bool Equals(object obj)

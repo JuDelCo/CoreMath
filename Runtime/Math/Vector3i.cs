@@ -1,9 +1,11 @@
 // SPDX-License-Identifier: MIT
 // Copyright (c) 2017-2021 Juan Delgado (@JuDelCo)
 
+using System;
+
 namespace Ju.Math
 {
-	public partial struct Vector3i
+	public partial struct Vector3i : IEquatable<Vector3i>
 	{
 		public int x;
 		public int y;
@@ -131,6 +133,11 @@ namespace Ju.Math
 				hash = hash * 23 + z.GetHashCode();
 				return hash;
 			}
+		}
+
+		public bool Equals(Vector3i other)
+		{
+			return (this == other);
 		}
 
 		public override bool Equals(object obj)

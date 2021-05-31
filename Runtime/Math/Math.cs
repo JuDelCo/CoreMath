@@ -145,6 +145,16 @@ namespace Ju.Math
 			return a + (Math.Clamp01(alpha) * (b - a));
 		}
 
+		public static int LerpRounded(int a, int b, float alpha)
+		{
+			return Round(Lerp(a, b, alpha));
+		}
+
+		public static int LerpRoundedClamped(int a, int b, float alpha)
+		{
+			return Round(LerpClamped(a, b, alpha));
+		}
+
 		public static float LerpInverse(float a, float b, float value)
 		{
 			return (value - a) / (b - a);

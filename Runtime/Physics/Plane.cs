@@ -1,9 +1,11 @@
 // SPDX-License-Identifier: MIT
 // Copyright (c) 2017-2021 Juan Delgado (@JuDelCo)
 
+using System;
+
 namespace Ju.Math
 {
-	public partial struct Plane
+	public partial struct Plane : IEquatable<Plane>
 	{
 		public Vector3f normal;
 		public float distance;
@@ -42,6 +44,11 @@ namespace Ju.Math
 				hash = hash * 23 + distance.GetHashCode();
 				return hash;
 			}
+		}
+
+		public bool Equals(Plane other)
+		{
+			return (this == other);
 		}
 
 		public override bool Equals(object obj)
