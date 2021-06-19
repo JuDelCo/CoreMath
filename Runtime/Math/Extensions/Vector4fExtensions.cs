@@ -5,14 +5,14 @@ namespace Ju.Math
 {
 	public partial struct Vector4f
 	{
-		public static Vector4f zero = new Vector4f(0f, 0f, 0f, 1f);
-		public static Vector4f one = new Vector4f(1f, 1f, 1f, 1f);
-		public static Vector4f right = new Vector4f(1f, 0f, 0f, 1f);
-		public static Vector4f left = new Vector4f(-1f, 0f, 0f, 1f);
-		public static Vector4f up = new Vector4f(0f, 1f, 0f, 1f);
-		public static Vector4f down = new Vector4f(0f, -1f, 0f, 1f);
-		public static Vector4f forward = new Vector4f(0f, 0f, 1f, 1f);
-		public static Vector4f back = new Vector4f(0f, 0f, -1f, 1f);
+		public static readonly Vector4f zero = new Vector4f(0f, 0f, 0f, 1f);
+		public static readonly Vector4f one = new Vector4f(1f, 1f, 1f, 1f);
+		public static readonly Vector4f right = new Vector4f(1f, 0f, 0f, 1f);
+		public static readonly Vector4f left = new Vector4f(-1f, 0f, 0f, 1f);
+		public static readonly Vector4f up = new Vector4f(0f, 1f, 0f, 1f);
+		public static readonly Vector4f down = new Vector4f(0f, -1f, 0f, 1f);
+		public static readonly Vector4f forward = new Vector4f(0f, 0f, 1f, 1f);
+		public static readonly Vector4f back = new Vector4f(0f, 0f, -1f, 1f);
 
 		public Vector4f(Vector3f v) : this(v, 1f)
 		{
@@ -80,6 +80,26 @@ namespace Ju.Math
 		public static explicit operator Vector4i(Vector4f vector)
 		{
 			return new Vector4i(Math.Round(vector.x), Math.Round(vector.y), Math.Round(vector.z), 0);
+		}
+
+		public Vector4f WithX(float value)
+		{
+			return new Vector4f(value, y, z, w);
+		}
+
+		public Vector4f WithY(float value)
+		{
+			return new Vector4f(x, value, z, w);
+		}
+
+		public Vector4f WithZ(float value)
+		{
+			return new Vector4f(x, y, value, w);
+		}
+
+		public Vector4f WithW(float value)
+		{
+			return new Vector4f(x, y, z, value);
 		}
 
 #pragma warning disable IDE1006

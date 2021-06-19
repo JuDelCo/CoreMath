@@ -12,6 +12,8 @@ namespace Ju.Math
 		public const float Sqrt2 = 1.41421356237f;
 		public const float Deg2Rad = Tau / 360f;
 		public const float Rad2Deg = 360f / Tau;
+		public const float Infinity = float.PositiveInfinity;
+		public const float NegativeInfinity = float.NegativeInfinity;
 
 		public static int Abs(int value)
 		{
@@ -169,6 +171,11 @@ namespace Ju.Math
 		public static float Log(float value)
 		{
 			return (float)System.Math.Log(value);
+		}
+
+		public static float Log(float value, float newBase)
+		{
+			return (float)System.Math.Log(value, newBase);
 		}
 
 		public static float Log10(float value)

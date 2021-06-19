@@ -21,7 +21,7 @@ Install (Unity)
 Update the dependencies in the ```/Packages/manifest.json``` file in your project folder with:
 
 ```
-	"com.judelco.core.math": "https://github.com/JuDelCo/CoreMath.git#v1.7.0",
+	"com.judelco.core.math": "https://github.com/JuDelCo/CoreMath.git#v1.9.0",
 ```
 
 

@@ -5,12 +5,12 @@ namespace Ju.Math
 {
 	public partial struct Vector2i
 	{
-		public static Vector2i zero = new Vector2i(0, 0);
-		public static Vector2i one = new Vector2i(1, 1);
-		public static Vector2i right = new Vector2i(1, 0);
-		public static Vector2i left = new Vector2i(-1, 0);
-		public static Vector2i up = new Vector2i(0, 1);
-		public static Vector2i down = new Vector2i(0, -1);
+		public static readonly Vector2i zero = new Vector2i(0, 0);
+		public static readonly Vector2i one = new Vector2i(1, 1);
+		public static readonly Vector2i right = new Vector2i(1, 0);
+		public static readonly Vector2i left = new Vector2i(-1, 0);
+		public static readonly Vector2i up = new Vector2i(0, 1);
+		public static readonly Vector2i down = new Vector2i(0, -1);
 
 		public int this[int i]
 		{
@@ -58,6 +58,16 @@ namespace Ju.Math
 		public static implicit operator Vector4i(Vector2i vector)
 		{
 			return new Vector4i(vector.x, vector.y, 0, 0);
+		}
+
+		public Vector2i WithX(int value)
+		{
+			return new Vector2i(value, y);
+		}
+
+		public Vector2i WithY(int value)
+		{
+			return new Vector2i(x, value);
 		}
 
 #pragma warning disable IDE1006

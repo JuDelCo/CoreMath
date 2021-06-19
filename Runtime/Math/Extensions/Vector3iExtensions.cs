@@ -5,14 +5,14 @@ namespace Ju.Math
 {
 	public partial struct Vector3i
 	{
-		public static Vector3i zero = new Vector3i(0, 0, 0);
-		public static Vector3i one = new Vector3i(1, 1, 1);
-		public static Vector3i right = new Vector3i(1, 0, 0);
-		public static Vector3i left = new Vector3i(-1, 0, 0);
-		public static Vector3i up = new Vector3i(0, 1, 0);
-		public static Vector3i down = new Vector3i(0, -1, 0);
-		public static Vector3i forward = new Vector3i(0, 0, 1);
-		public static Vector3i back = new Vector3i(0, 0, -1);
+		public static readonly Vector3i zero = new Vector3i(0, 0, 0);
+		public static readonly Vector3i one = new Vector3i(1, 1, 1);
+		public static readonly Vector3i right = new Vector3i(1, 0, 0);
+		public static readonly Vector3i left = new Vector3i(-1, 0, 0);
+		public static readonly Vector3i up = new Vector3i(0, 1, 0);
+		public static readonly Vector3i down = new Vector3i(0, -1, 0);
+		public static readonly Vector3i forward = new Vector3i(0, 0, 1);
+		public static readonly Vector3i back = new Vector3i(0, 0, -1);
 
 		public Vector3i(Vector2i v) : this(v, 0)
 		{
@@ -75,6 +75,21 @@ namespace Ju.Math
 		public static implicit operator Vector4i(Vector3i vector)
 		{
 			return new Vector4i(vector.x, vector.y, vector.z, 0);
+		}
+
+		public Vector3i WithX(int value)
+		{
+			return new Vector3i(value, y, z);
+		}
+
+		public Vector3i WithY(int value)
+		{
+			return new Vector3i(x, value, z);
+		}
+
+		public Vector3i WithZ(int value)
+		{
+			return new Vector3i(x, y, value);
 		}
 
 #pragma warning disable IDE1006

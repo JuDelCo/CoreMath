@@ -5,6 +5,7 @@ using System;
 
 namespace Ju.Math
 {
+	[Serializable]
 	public partial struct Vector4f : IEquatable<Vector4f>
 	{
 		public float x;

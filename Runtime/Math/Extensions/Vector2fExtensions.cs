@@ -5,12 +5,12 @@ namespace Ju.Math
 {
 	public partial struct Vector2f
 	{
-		public static Vector2f zero = new Vector2f(0f, 0f);
-		public static Vector2f one = new Vector2f(1f, 1f);
-		public static Vector2f right = new Vector2f(1f, 0f);
-		public static Vector2f left = new Vector2f(-1f, 0f);
-		public static Vector2f up = new Vector2f(0f, 1f);
-		public static Vector2f down = new Vector2f(0f, -1f);
+		public static readonly Vector2f zero = new Vector2f(0f, 0f);
+		public static readonly Vector2f one = new Vector2f(1f, 1f);
+		public static readonly Vector2f right = new Vector2f(1f, 0f);
+		public static readonly Vector2f left = new Vector2f(-1f, 0f);
+		public static readonly Vector2f up = new Vector2f(0f, 1f);
+		public static readonly Vector2f down = new Vector2f(0f, -1f);
 
 		public float this[int i]
 		{
@@ -58,6 +58,16 @@ namespace Ju.Math
 		public static explicit operator Vector4i(Vector2f vector)
 		{
 			return new Vector4i(Math.Round(vector.x), Math.Round(vector.y), 0, 0);
+		}
+
+		public Vector2f WithX(float value)
+		{
+			return new Vector2f(value, y);
+		}
+
+		public Vector2f WithY(float value)
+		{
+			return new Vector2f(x, value);
 		}
 
 #pragma warning disable IDE1006

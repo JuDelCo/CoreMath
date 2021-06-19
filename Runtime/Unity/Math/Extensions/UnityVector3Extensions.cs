@@ -5,7 +5,7 @@
 
 namespace Ju.Math
 {
-	public static class UnityVector3iExtensions
+	public static class UnityVector3Extensions
 	{
 		public static Vector3i RoundToVector3i(this UnityEngine.Vector3 v)
 		{
@@ -20,6 +20,21 @@ namespace Ju.Math
 		public static Vector3i CeilToVector3i(this UnityEngine.Vector3 v)
 		{
 			return new Vector3i(Math.Ceil(v.x), Math.Ceil(v.y), Math.Ceil(v.z));
+		}
+
+		public static UnityEngine.Vector3 WithX(this UnityEngine.Vector3 v, float value)
+		{
+			return new UnityEngine.Vector3(value, v.y, v.z);
+		}
+
+		public static UnityEngine.Vector3 WithY(this UnityEngine.Vector3 v, float value)
+		{
+			return new UnityEngine.Vector3(v.x, value, v.z);
+		}
+
+		public static UnityEngine.Vector3 WithZ(this UnityEngine.Vector3 v, float value)
+		{
+			return new UnityEngine.Vector3(v.x, v.y, value);
 		}
 	}
 }

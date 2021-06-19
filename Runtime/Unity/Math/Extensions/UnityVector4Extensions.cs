@@ -5,7 +5,7 @@
 
 namespace Ju.Math
 {
-	public static class UnityVector4iExtensions
+	public static class UnityVector4Extensions
 	{
 		public static Vector4i RoundToVector4i(this UnityEngine.Vector4 v)
 		{
@@ -20,6 +20,26 @@ namespace Ju.Math
 		public static Vector4i CeilToVector4i(this UnityEngine.Vector4 v)
 		{
 			return new Vector4i(Math.Ceil(v.x), Math.Ceil(v.y), Math.Ceil(v.z), Math.Ceil(v.w));
+		}
+
+		public static UnityEngine.Vector4 WithX(this UnityEngine.Vector4 v, float value)
+		{
+			return new UnityEngine.Vector4(value, v.y, v.z, v.w);
+		}
+
+		public static UnityEngine.Vector4 WithY(this UnityEngine.Vector4 v, float value)
+		{
+			return new UnityEngine.Vector4(v.x, value, v.z, v.w);
+		}
+
+		public static UnityEngine.Vector4 WithZ(this UnityEngine.Vector4 v, float value)
+		{
+			return new UnityEngine.Vector4(v.x, v.y, value, v.w);
+		}
+
+		public static UnityEngine.Vector4 WithW(this UnityEngine.Vector4 v, float value)
+		{
+			return new UnityEngine.Vector4(v.x, v.y, v.z, value);
 		}
 	}
 }

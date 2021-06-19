@@ -5,6 +5,7 @@ using System;
 
 namespace Ju.Math
 {
+	[Serializable]
 	public partial struct Box : IEquatable<Box>
 	{
 		private Vector3f centerPosition;

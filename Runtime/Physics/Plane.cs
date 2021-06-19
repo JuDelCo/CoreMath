@@ -5,6 +5,7 @@ using System;
 
 namespace Ju.Math
 {
+	[Serializable]
 	public partial struct Plane : IEquatable<Plane>
 	{
 		public Vector3f normal;

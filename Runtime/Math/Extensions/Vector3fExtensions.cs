@@ -5,14 +5,14 @@ namespace Ju.Math
 {
 	public partial struct Vector3f
 	{
-		public static Vector3f zero = new Vector3f(0f, 0f, 0f);
-		public static Vector3f one = new Vector3f(1f, 1f, 1f);
-		public static Vector3f right = new Vector3f(1f, 0f, 0f);
-		public static Vector3f left = new Vector3f(-1f, 0f, 0f);
-		public static Vector3f up = new Vector3f(0f, 1f, 0f);
-		public static Vector3f down = new Vector3f(0f, -1f, 0f);
-		public static Vector3f forward = new Vector3f(0f, 0f, 1f);
-		public static Vector3f back = new Vector3f(0f, 0f, -1f);
+		public static readonly Vector3f zero = new Vector3f(0f, 0f, 0f);
+		public static readonly Vector3f one = new Vector3f(1f, 1f, 1f);
+		public static readonly Vector3f right = new Vector3f(1f, 0f, 0f);
+		public static readonly Vector3f left = new Vector3f(-1f, 0f, 0f);
+		public static readonly Vector3f up = new Vector3f(0f, 1f, 0f);
+		public static readonly Vector3f down = new Vector3f(0f, -1f, 0f);
+		public static readonly Vector3f forward = new Vector3f(0f, 0f, 1f);
+		public static readonly Vector3f back = new Vector3f(0f, 0f, -1f);
 
 		public Vector3f(Vector2f v) : this(v, 0f)
 		{
@@ -75,6 +75,21 @@ namespace Ju.Math
 		public static explicit operator Vector4i(Vector3f vector)
 		{
 			return new Vector4i(Math.Round(vector.x), Math.Round(vector.y), Math.Round(vector.z), 0);
+		}
+
+		public Vector3f WithX(float value)
+		{
+			return new Vector3f(value, y, z);
+		}
+
+		public Vector3f WithY(float value)
+		{
+			return new Vector3f(x, value, z);
+		}
+
+		public Vector3f WithZ(float value)
+		{
+			return new Vector3f(x, y, value);
 		}
 
 #pragma warning disable IDE1006

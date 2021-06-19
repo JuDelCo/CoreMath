@@ -5,6 +5,7 @@ using System;
 
 namespace Ju.Math
 {
+	[Serializable]
 	public partial struct Matrix3 : IEquatable<Matrix3>
 	{
 		public float m00;
@@ -100,6 +101,11 @@ namespace Ju.Math
 				(m.m01 * v.x + m.m11 * v.y) + m.m21 * v.z,
 				(m.m02 * v.x + m.m12 * v.y) + m.m22 * v.z
 			);
+		}
+
+		public static Vector3f operator *(Vector3f v, Matrix3 m)
+		{
+			return Matrix3.Inverse(m) * v;
 		}
 
 		public static Matrix3 operator *(Matrix3 m, float v)

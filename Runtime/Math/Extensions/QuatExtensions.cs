@@ -5,7 +5,7 @@ namespace Ju.Math
 {
 	public partial struct Quat
 	{
-		public static Quat identity = new Quat(0f, 0f, 0f, 1f);
+		public static readonly Quat identity = new Quat(0f, 0f, 0f, 1f);
 
 		public static explicit operator Quat(Matrix3 m)
 		{

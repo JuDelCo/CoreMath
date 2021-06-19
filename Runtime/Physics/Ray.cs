@@ -5,6 +5,7 @@ using System;
 
 namespace Ju.Math
 {
+	[Serializable]
 	public partial struct Ray : IEquatable<Ray>
 	{
 		public Vector3f position;

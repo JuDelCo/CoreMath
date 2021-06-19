@@ -5,8 +5,8 @@ namespace Ju.Math
 {
 	public partial struct Matrix3
 	{
-		public static Matrix3 zero = new Matrix3(0f, 0f, 0f, 0f, 0f, 0f, 0f, 0f, 0f);
-		public static Matrix3 identity = new Matrix3(1f, 0f, 0f, 0f, 1f, 0f, 0f, 0f, 1f);
+		public static readonly Matrix3 zero = new Matrix3(0f, 0f, 0f, 0f, 0f, 0f, 0f, 0f, 0f);
+		public static readonly Matrix3 identity = new Matrix3(1f, 0f, 0f, 0f, 1f, 0f, 0f, 0f, 1f);
 
 		public float this[int row, int col]
 		{
