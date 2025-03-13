@@ -1,5 +1,5 @@
 // SPDX-License-Identifier: MIT
-// Copyright (c) 2017-2021 Juan Delgado (@JuDelCo)
+// Copyright (c) 2017-2025 Juan Delgado (@JuDelCo)
 
 #if UNITY_2018_3_OR_NEWER
 

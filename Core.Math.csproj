@@ -1,13 +1,16 @@
 <Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
-    <Version>1.8.0</Version>
+    <Version>1.10.0</Version>
     <Authors>Juan Delgado (@JuDelCo)</Authors>
     <Title>JuCore.Math</Title>
     <AssemblyName>JuCore.Math</AssemblyName>
     <Description>Linear algebra math library and utils</Description>
     <RepositoryType>git</RepositoryType>
+	<PackageId>JuDelCo.Lib.CoreMath</PackageId>
+    <PackageProjectUrl>https://github.com/JuDelCo/CoreMath</PackageProjectUrl>
     <RepositoryUrl>https://github.com/JuDelCo/CoreMath</RepositoryUrl>
+	<PackageLicenseExpression>MIT</PackageLicenseExpression>
   </PropertyGroup>
 
   <PropertyGroup>
