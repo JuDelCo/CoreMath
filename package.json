@@ -1,26 +1,26 @@
 {
-  "name": "com.judelco.core.math",
-  "displayName": "JuCore Math",
-  "description": "Linear algebra math library and utils",
-  "version": "1.10.0",
-  "unity": "2018.3",
-  "dependencies": {},
-  "type": "library",
-  "license": "MIT",
-  "keywords": [
-    "core",
-    "jucore",
-    "math",
-    "algebra",
-    "ik",
-    "noise"
-  ],
-  "author": {
-    "name": "JuDelCo",
-    "url": "https://twitter.com/JuDelCo"
-  },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/JuDelCo/CoreMath.git"
-  }
+	"name": "com.judelco.core.math",
+	"displayName": "JuCore Math",
+	"description": "Linear algebra math library and utils",
+	"version": "1.11.0",
+	"unity": "2018.3",
+	"dependencies": {},
+	"type": "library",
+	"license": "MIT",
+	"keywords": [
+		"core",
+		"jucore",
+		"math",
+		"algebra",
+		"ik",
+		"noise"
+	],
+	"author": {
+		"name": "JuDelCo",
+		"url": "https://twitter.com/JuDelCo"
+	},
+	"repository": {
+		"type": "git",
+		"url": "git+https://github.com/JuDelCo/CoreMath.git"
+	}
 }
