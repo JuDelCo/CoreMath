@@ -1,32 +1,48 @@
 <Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
-    <Version>1.11.0</Version>
-    <Authors>Juan Delgado (@JuDelCo)</Authors>
     <Title>JuCore.Math</Title>
+    <Version>1.12.0</Version>
     <AssemblyName>JuCore.Math</AssemblyName>
+    <Authors>Juan Delgado (@JuDelCo)</Authors>
+	<Copyright>Copyright (c) 2016-2025 Juan Delgado (@JuDelCo)</Copyright>
     <Description>Linear algebra math library and utils</Description>
-    <RepositoryType>git</RepositoryType>
     <PackageId>JuDelCo.Lib.CoreMath</PackageId>
+	<PackageTags>Core;JuCore;LinearAlgebra;Algebra;Math;Numerics;Matrix;Vector;Geometry;Utils;Algorithms;Noise;IK</PackageTags>
     <PackageReadmeFile>README.md</PackageReadmeFile>
     <PackageProjectUrl>https://github.com/JuDelCo/CoreMath</PackageProjectUrl>
     <RepositoryUrl>https://github.com/JuDelCo/CoreMath</RepositoryUrl>
+    <RepositoryType>git</RepositoryType>
     <PackageLicenseExpression>MIT</PackageLicenseExpression>
   </PropertyGroup>
 
   <ItemGroup>
-    <None Include="README.md" Pack="true" PackagePath="\"/>
+    <None Include="README.md" Pack="true" PackagePath="/"/>
+    <None Include="CHANGELOG.md" Pack="true" PackagePath="/"/>
+    <None Include="LICENSE.md" Pack="true" PackagePath="/"/>
+    <Content Include="**/*.cs" Exclude="bin/**;obj/**" Pack="true" PackagePath="contentFiles/cs/any/" />
   </ItemGroup>
 
   <PropertyGroup>
     <OutputType>Library</OutputType>
-    <TargetFramework>netstandard2.0</TargetFramework>
+    <IncludeBuildOutput>false</IncludeBuildOutput>
+    <NoWarn>$(NoWarn);NU5128</NoWarn>
+    <InvariantGlobalization>true</InvariantGlobalization>
+  </PropertyGroup>
 
+  <PropertyGroup>
     <IsLinux Condition="'$([System.Runtime.InteropServices.RuntimeInformation]::IsOSPlatform($([System.Runtime.InteropServices.OSPlatform]::Linux)))' == 'true'">true</IsLinux>
     <IsOSX Condition="'$([System.Runtime.InteropServices.RuntimeInformation]::IsOSPlatform($([System.Runtime.InteropServices.OSPlatform]::OSX)))' == 'true'">true</IsOSX>
     <IsWindows Condition="'$([System.Runtime.InteropServices.RuntimeInformation]::IsOSPlatform($([System.Runtime.InteropServices.OSPlatform]::Windows)))' == 'true'">true</IsWindows>
+    <IsGodotBuild Condition="$([System.Text.RegularExpressions.Regex]::IsMatch($(DefineConstants), 'GODOT'))">true</IsGodotBuild>
+  </PropertyGroup>
 
-    <InvariantGlobalization>true</InvariantGlobalization>
+  <PropertyGroup Condition="'$(IsGodotBuild)'!='true'">
+    <TargetFramework>netstandard2.0</TargetFramework>
+  </PropertyGroup>
+
+  <PropertyGroup Condition="'$(IsGodotBuild)'=='true'">
+    <TargetFramework>net8.0</TargetFramework>
   </PropertyGroup>
 
   <PropertyGroup Condition="'$(IsLinux)'=='true'">

@@ -2,7 +2,7 @@
 	"name": "com.judelco.core.math",
 	"displayName": "JuCore Math",
 	"description": "Linear algebra math library and utils",
-	"version": "1.11.0",
+	"version": "1.12.0",
 	"unity": "2018.3",
 	"dependencies": {},
 	"type": "library",
@@ -10,10 +10,17 @@
 	"keywords": [
 		"core",
 		"jucore",
-		"math",
+		"linearalgebra",
 		"algebra",
-		"ik",
-		"noise"
+		"math",
+		"numerics",
+		"matrix",
+		"vector",
+		"geometry",
+		"utils",
+		"algorithms",
+		"noise",
+		"ik"
 	],
 	"author": {
 		"name": "JuDelCo",
