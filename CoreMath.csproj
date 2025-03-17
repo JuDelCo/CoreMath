@@ -2,7 +2,7 @@
 
   <PropertyGroup>
     <Title>JuCore.Math</Title>
-    <Version>1.13.0</Version>
+    <Version>1.14.0</Version>
     <AssemblyName>JuCore.Math</AssemblyName>
     <Authors>Juan Delgado (@JuDelCo)</Authors>
 	<Copyright>Copyright (c) 2016-2025 Juan Delgado (@JuDelCo)</Copyright>
@@ -20,7 +20,7 @@
     <None Include="README.md" Pack="true" PackagePath="/"/>
     <None Include="CHANGELOG.md" Pack="true" PackagePath="/"/>
     <None Include="LICENSE.md" Pack="true" PackagePath="/"/>
-    <None Include="buildTransitive/CoreMath.targets" Pack="true" PackagePath="buildTransitive" />
+    <None Include="build/JuDelCo.Lib.CoreMath.targets" Pack="true" PackagePath="build" />
     <Content Include="**/*.cs" Exclude="bin/**;obj/**" Pack="true" PackagePath="contentFiles/cs/any/" />
   </ItemGroup>
 
