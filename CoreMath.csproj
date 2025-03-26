@@ -2,7 +2,7 @@
 
   <PropertyGroup>
     <Title>JuCore.Math</Title>
-    <Version>1.14.0</Version>
+    <Version>1.15.0</Version>
     <AssemblyName>JuCore.Math</AssemblyName>
     <Authors>Juan Delgado (@JuDelCo)</Authors>
 	<Copyright>Copyright (c) 2016-2025 Juan Delgado (@JuDelCo)</Copyright>
